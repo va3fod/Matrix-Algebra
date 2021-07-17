@@ -399,7 +399,7 @@ const double Matrix::getElem(int r, int c) const
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Converts sqaure matrix in an identity matrix
+// Converts square matrix in an identity matrix
 void Matrix::identity(void)
 {
 	if (num_row==num_col)
@@ -773,8 +773,7 @@ void Matrix::operator+=(Matrix &b)// Modified here
 
 ///////////////////////////////////////////////////////////////////////////////
 //Scalar substraction operator (scalar element by element substraction)
-//Note: scalar must be the second operand
-//Example: CMAT = AMAT - b;
+//scalar must be the second operand
 Matrix& Matrix::operator-(double b)
 {
 	Matrix* pMatTmp = new Matrix(num_row, num_col);
@@ -958,7 +957,6 @@ Matrix& Matrix::skew_sym(void)
 
 ///////////////////////////////////////////////////////////////////////////////
 //Returns the sub matrix after row r and col c have been ommitted
-//Example: BMAT = AMAT.sub_matrix(1,3); 
 Matrix& Matrix::sub_matrix(int r, int c)
 { 
 	Matrix* pMatTmp = new Matrix(num_row - 1, num_col - 1);
