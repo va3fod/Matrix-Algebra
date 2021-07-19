@@ -69,36 +69,7 @@ int main()
     invMat.print("invMat");*/
 
 
-    Matrix A(4, 2, 1);
-    A.pd[0][0] = 0;
-    A.pd[1][0] = 3;
-    A.pd[2][0] = 2;
-    A.pd[3][0] = 2;
-    //A.pd[4][0] = 1;
-
-    A.pd[0][1] = 1;
-    A.pd[1][1] = 0;
-    A.pd[2][1] = 5;
-    A.pd[3][1] = 0;
-    //A.pd[4][1] = 0;
-
-  //  A.pd[0][2] = 0;
-  //  A.pd[1][2] = 2;
-  //  A.pd[2][2] = 0;
-  //  A.pd[3][2] = 1;
-    //A.pd[4][2] = 1;
-
-  /*  A.pd[0][3] = 9;
-    A.pd[1][3] = 7;
-    A.pd[2][3] = 7;
-    A.pd[3][3] = 9;*/
-    //A.pd[4][3] = 3;
-
-   // A.pd[0][4] = 1;
-   // A.pd[1][4] = 1;
-   // A.pd[2][4] = 1;
-  //  A.pd[3][4] = 2;
-//    A.pd[4][4] = 2;
+    Matrix A(4, 4, 2);
 
     A.print("A is = ");
     int rankvalue = A.rank();
@@ -111,6 +82,10 @@ int main()
     A.print("A = ");
     B.print("B = ");
     bool eq = A == B ? 1 : 0;
+
+    A = B * A + 2 - B*3;
+    A.print("A = ");
+
  /*   Matrix C(2, 3, 2), D(3, 4, 2);
     Matrix Prod;
 
@@ -127,6 +102,9 @@ int main()
     v3 = v1 * v2;
     v3.print("v3=");*/
     
+    Matrix v1(4, 1, 2),v2(1,4,3);
+    double dotProd = v1 ^ v2;
+    cout << "dot prod = " << dotProd << endl;
 
     std::cin.get();
 }

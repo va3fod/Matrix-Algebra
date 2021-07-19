@@ -137,6 +137,7 @@ bool Matrix::CheckVectors(Matrix& V1, Matrix& V2, int* length, bool* rowsDim)
 	{
 		*length = 0;
 		*rowsDim = true;
+		cout <<"vectors dimentions are not the same" << endl;
 		return false;
 	}
 }
@@ -211,9 +212,6 @@ void Matrix::buildDiag(Matrix &out)
 //|V1|             | cos(elevation)*cos(azimuth)|
 //|V2| = magnitude*|cos(elevation)*sin(azimuth) |
 //|V3|		       |	  -sin(elevation)       |
-//
-//Example: vector.cart_from_pol(dvbe,psivg,thtvg); 	
-///////////////////////////////////////////////////////////////////////////////
 void Matrix::polar2cartesian(double mag,double az,double elev)
 {
 	resize(3, 1);
@@ -228,8 +226,6 @@ void Matrix::polar2cartesian(double mag,double az,double elev)
 // magnitude = POLAR(0,0) = |V|
 // azimuth   = POLAR(1,0) = atan2(V2,V1)
 // elevation = POLAR(2,0) = atan2(-V3,sqrt(V1^2+V2^2)
-//Example: POLAR = vector.pol_from_cart();
-///////////////////////////////////////////////////////////////////////////////
 Matrix& Matrix::cartesian2polar(void)
 {
 	double d = 0.0; // magnitude
@@ -282,7 +278,7 @@ void Matrix::setElem(int r, int c, double value)
 	}
 	else
 	{
-		cout << "index out of bounds" << endl;
+		cout << "Index out of bounds" << endl;
 	}
 }
 ///////////////////////////////////////////////////////////////////////////////
@@ -380,7 +376,7 @@ const int Matrix::getIndex(int r, int c) const
 	}
 	else
 	{
-		cout << "indx out of bounds" << endl;
+		cout << "Index out of bounds" << endl;
 		return -1;
 	}
 }
@@ -393,7 +389,7 @@ const double Matrix::getElem(int r, int c) const
 		return pd[r][c];		
 	else
 	{
-		cout << "indx out of bounds" << endl;
+		cout << "Index out of bounds" << endl;
 		return 0.0;
 	}
 }
@@ -411,14 +407,13 @@ void Matrix::identity(void)
 	}
 	else
 	{
-		cout << "matrix is not square" << endl;
+		cout << "Matrix is not square" << endl;
 	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 //Returns the inverse of a square matrix AMAT
 //Inversion  A^-1=(1/det(A))*Adj(A)
-//Example: BMAT = AMAT.inverse();
 void Matrix::inverse(Matrix &out)
 {
 	double d=0;
@@ -444,7 +439,7 @@ double Matrix::det(void)
 
 	if (num_row != num_col)
 	{
-		cout << "matrix is not square." << endl;
+		cout << "Matrix is not square." << endl;
 		return 0;
 	}
 
@@ -575,13 +570,14 @@ bool Matrix::operator!=(Matrix &b)
 {
 	if ((num_col != b.num_col) || (num_row != b.num_row))
 	{
+		cout << "invalid dimensions for inequality operation" << endl;
 		return true;
 	}
 		
 	for (int i=0;i<num_row;i++)
 		for(int j=0;j<num_col;j++)
 		{
-			//check to see if values differ by more or less than EPS
+			//check to see if abs dif value differ by more than EPS
 			if (abs(pd[i][j] - b.pd[i][j]) > EPS_MATRIX)
 			{
 				return true;
@@ -649,6 +645,10 @@ Matrix& Matrix::operator*(Matrix& b)
 		pMatTmp->pd[rowsDim ? 1 : 0][rowsDim ? 0 : 1] = pd[rowsDim ? 2 : 0][rowsDim ? 0 : 2] * b.pd[0][0] - pd[0][0] * b.pd[rowsDim ? 2 : 0][rowsDim ? 0 : 2];
 		pMatTmp->pd[rowsDim ? 2 : 0][rowsDim ? 0 : 2] = pd[0][0] * b.pd[rowsDim ? 1 : 0][rowsDim ? 0 : 1] - pd[rowsDim ? 1 : 0][rowsDim ? 0 : 1] * b.pd[0][0];
 	}
+	else
+	{
+		cout << "invalid dimensions for operation * " << endl;
+	}
 	
 	return *pMatTmp;
 }
@@ -675,7 +675,7 @@ void Matrix::operator*=(Matrix &b)
 	//check dimensions
 	if (num_col!=b.num_row)
 	{
-		cout << "invalid dimensions for operation" << endl;
+		cout << "invalid dimensions for operation *= " << endl;
 	}
 	else
 	{
@@ -709,8 +709,6 @@ void Matrix::operator*=(Matrix &b)
 ///////////////////////////////////////////////////////////////////////////////
 //Scalar Addition operator (scalar element by element addition)
 //Note: scalar must be the second operand
-//Example: CMAT = AMAT + b; 
-///////////////////////////////////////////////////////////////////////////////
 Matrix& Matrix::operator+(double b)
 {
 	Matrix* pMatTmp = new Matrix(num_row, num_col);
@@ -728,7 +726,6 @@ Matrix& Matrix::operator+(double b)
 
 ///////////////////////////////////////////////////////////////////////////////
 //Addition operator, returns matrix addition
-///////////////////////////////////////////////////////////////////////////////
 Matrix& Matrix::operator+(Matrix &b)
 {
 	Matrix* pMatTmp = new Matrix(num_row, num_col);
@@ -757,10 +754,10 @@ void Matrix::operator+=(double b)
 
 ///////////////////////////////////////////////////////////////////////////////
 //Addition assignment operator
-void Matrix::operator+=(Matrix &b)// Modified here
+void Matrix::operator+=(Matrix &b)
 {
 	if ((num_col!=b.num_col)&&(num_row!=b.num_row))
-		{cout<<"Invalid Matrix dimension in 'operator +="<<endl;}
+		{cout<<"Invalid Matrix dimensions in 'operator +="<<endl;}
 	else
 	{
 	for (int i=0;i<num_row;i++)
@@ -797,7 +794,7 @@ Matrix& Matrix::operator-(Matrix &b)
 
 	if ((num_col!=b.num_col)&&(num_row!=b.num_row))
 	{
-		cout<<"Invalid Matrix dimension in operator-"<<endl;
+		cout<<"Invalid Matrix dimensions in operator-"<<endl;
 	}
 	else
 	{
@@ -865,13 +862,16 @@ void Matrix::operator=(Matrix &b)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-//Equality relational operator
+//Equality relational operator of 2 identical matrixes
 bool Matrix::operator==(Matrix &b)
 {
 	//check dimensions
-	if ((num_col!=b.num_col) || (num_row != b.num_row))
+	if ((num_col != b.num_col) || (num_row != b.num_row))
+	{
+		cout << "invalid dimensions for the equality operation" << endl;
 		return false;
-	
+	}
+		
 	for (int i=0;i<num_row;i++)
 		for(int j=0;j<num_col;j++)
 		{
@@ -884,8 +884,8 @@ bool Matrix::operator==(Matrix &b)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-//Example: value = AMAT ^ BMAT;   = ax*bx+ay*by+az*bz
-// Dot product of 2 vectors
+//Example: value = v1 ^ v2   = v1x*v2x+v1y*v2y+v1z*v2z * ...
+// Dot product of 2 vectors, of the same dimensions
 double Matrix::operator^(Matrix &b)
 {
 	double temp=0.0;
@@ -902,7 +902,7 @@ double Matrix::operator^(Matrix &b)
 	}
 	else
 	{
-		cout << "invalid dimenstion for the operation requested";
+		cout << "invalid dimensions for the dot production operation" << endl;
 	}
 			
 	return temp;
@@ -955,7 +955,7 @@ Matrix& Matrix::skew_sym(void)
 	return *pMatTmp;
 }
 
-///////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 //Returns the sub matrix after row r and col c have been ommitted
 Matrix& Matrix::sub_matrix(int r, int c)
 { 
@@ -969,7 +969,7 @@ Matrix& Matrix::sub_matrix(int r, int c)
 			//skip the row to be removed
 			if (i != r)
 				if (i < r)
-					// DO NOT adjust indices NO row has been removed
+					
 					for (int j = 0; j < num_col; j++)
 					{
 						if (j != c)
@@ -1006,9 +1006,8 @@ Matrix& Matrix::sub_matrix(int r, int c)
 	return *pMatTmp;
 }
 
-///////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 //Builds unit vector from 3x1 vector
-///////////////////////////////////////////////////////////////////////////////
 void Matrix::unitvec3(Matrix &out)
 {
 	double magnitude = mag();

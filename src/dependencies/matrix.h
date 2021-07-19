@@ -25,7 +25,6 @@ private:
 
 public:
 
-	// from here below all the row and cols and other indexes are ZERO based C convention for accessing.
 	double** pd=NULL;  // Matrix numerical data, pointer to data
 	
 	//constructors
