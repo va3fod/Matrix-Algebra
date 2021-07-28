@@ -78,7 +78,7 @@ public:
 	// |V1|             | cos(elevation)*cos(azimuth)|
 	// |V2| = magnitude*|cos(elevation)*sin(azimuth) |
 	// |V3|		        |	  -sin(elevation)        |
-	void polar2cartesian(double mag,double az,double elev);
+	void polar2cartesian(double mag,double az,double elev); // azimuth and elevation angles given in radians
 	
 	// Cartesian coordinates to polar transformation
 	// magnitude = POLAR(0,0) = |V|

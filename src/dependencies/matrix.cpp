@@ -412,8 +412,8 @@ void Matrix::identity(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-//Returns the inverse of a square matrix AMAT
-//Inversion  A^-1=(1/det(A))*Adj(A)
+//Returns the inverse of a square matrix A
+//Inv  A^-1 = (1/det(A)) * adj(A)
 void Matrix::inverse(Matrix &out)
 {
 	double d=0;
@@ -425,9 +425,17 @@ void Matrix::inverse(Matrix &out)
 	else
 	{
 		d=det();
-		d=1/d;
-		adjoint(out);
-		out*=d;
+		if (abs(d) > EPS_MATRIX)
+		{
+			d = 1 / d;
+			adjoint(out);
+			out *= d;
+		}
+		else
+		{
+			cout << "Determinant is zero, inverse does not exist" << endl;
+		}
+		
 	}
 }
 

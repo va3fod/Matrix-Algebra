@@ -2,8 +2,6 @@
 #include "matrix.h"
 #include <iostream>
 
-// testing the Matrix algebra class... VA3FOD
-//*********************************************
 int main()
 {
     // sample use of Matrix class
@@ -83,8 +81,14 @@ int main()
     B.print("B = ");
     bool eq = A == B ? 1 : 0;
 
-    A = B * A + 2 - B*3;
+    A = B * A + 2 - B * 3; 
+    
     A.print("A = ");
+
+    A -= 2;
+    A.print("A = ");
+
+  
 
  /*   Matrix C(2, 3, 2), D(3, 4, 2);
     Matrix Prod;
@@ -102,9 +106,21 @@ int main()
     v3 = v1 * v2;
     v3.print("v3=");*/
     
-    Matrix v1(4, 1, 2),v2(1,4,3);
+    Matrix v1(3, 1, 2),v2(3,1,3);
     double dotProd = v1 ^ v2;
     cout << "dot prod = " << dotProd << endl;
+
+    Matrix AA(3, 3, 2);
+
+    AA.pd[1][1] = 1;
+    AA.pd[0][1] = -1;
+    AA.pd[1][2] = 3;
+
+    AA.print("AA = ");
+   
+    Matrix INV;
+    AA.inverse(INV);
+    INV.print("INV of A = ");
 
     std::cin.get();
 }
