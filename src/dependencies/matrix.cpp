@@ -142,7 +142,7 @@ bool Matrix::CheckVectors(Matrix& V1, Matrix& V2, int* length, bool* rowsDim)
 	}
 }
 ///////////////////////////////////////////////////////////////////////////////
-//Absolute value of vector. If the object instance is a matrix, specify the column index
+//Absolute value of vector
 const double Matrix::mag(void) 
 {
 	double d=0.0;
@@ -169,9 +169,7 @@ const double Matrix::mag(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-//Adjoint matrix (same as det procedure however the matrix element
-//is NOT multiplied into each cofactor)
-///////////////////////////////////////////////////////////////////////////////
+//Adjoint matrix (same as det procedure however the matrix element is not multiplied into each cofactor)
 void Matrix::adjoint(Matrix &out)
 {	
 	out.resize(num_row,num_col);
@@ -235,7 +233,6 @@ Matrix& Matrix::cartesian2polar(void)
 
 	int max_size = num_row > num_col ? num_row : num_col;
 	Matrix* POLAR = new Matrix(max_size, 1);
-	const double	PI = 3.1415926536;
 
 	double v1 = getElem(0, 0);
 	double v2 = getElem(1, 0);
@@ -252,8 +249,8 @@ Matrix& Matrix::cartesian2polar(void)
 		elevation = atan2(-v3, denom);
 	else 
 	{
-		if (v3 > 0) elevation = -PI / 2.;
-		if (v3 < 0) elevation = PI / 2.;
+		if (v3 > 0) elevation = -M_PI / 2.;
+		if (v3 < 0) elevation = M_PI / 2.;
 		if (v3 == 0) elevation = 0.;
 	}
 

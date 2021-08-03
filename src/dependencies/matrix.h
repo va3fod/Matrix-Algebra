@@ -1,20 +1,21 @@
 #pragma once
-
+#define _USE_MATH_DEFINES
 #include <iostream>
 #include <cmath>
+#include <math.h>
 
 using std::cout;
 using std::endl;
 
-// Matrix class --->>> Aschiuta --->>> VA3FOD
+// Matrix class --->>> VA3FOD
 class Matrix
 {
 private:
 	
-	const int  MATDIM = 3; // default value
+	const int  MATDIM = 3; // default
 	const double EPS_MATRIX = 1.e-7;
 	
-	int MatTemp = 0; // to keep track of the temporary matrix created, for memory management.
+	int MatTemp = 0; // for memory management
 	void AllocateMemory(int row, int col);
 	void deAllocateMemory(void);
 	bool CheckVectors(Matrix& V1, Matrix& V2, int* length, bool *rowsDim);// returns true if the 2 vectors are identical (dimensions) 
@@ -25,17 +26,15 @@ private:
 
 public:
 
-	double** pd=NULL;  // Matrix numerical data, pointer to data
+	double** pd=NULL;  //  data
 	
-	//constructors
 	Matrix();
 	Matrix(double value);
 	Matrix(int r, int c);
 	Matrix(int r, int c,double value);
 	Matrix(double* pMat, int row, int col);
-	Matrix(Matrix &other); // copy constructor
+	Matrix(Matrix &other); 
 	
-	//deconstructor
 	~Matrix();
 
 	// Matrix resize
