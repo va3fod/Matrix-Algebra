@@ -70,7 +70,6 @@ public:
 	void buildDiag(Matrix& out);
 
 	//Returns the adjoint
-	// same as determinant procedure however the matrix element is NOT multiplied into each cofactor
 	void adjoint(Matrix& out);
 	
 	// Polar coordinates to cartesian transformation
@@ -112,8 +111,8 @@ public:
 	//Returns the inverse of a square matrix AMAT
 	void inverse(Matrix& out);
 
-	// Operator declarations
-	
+
+	//********************************************************* Operator declarations *********************************************
 	//Inequality relational operator, returns true or false
 	bool operator!=(Matrix &b);
 

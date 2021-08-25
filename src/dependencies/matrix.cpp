@@ -2,12 +2,11 @@
 #include "matrix.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-// constructors
+// Matrix constructors
 Matrix::Matrix():num_row(MATDIM),num_col(MATDIM)
 {	
 	// allocate here memory for the matrix for a default size 3x3
 	AllocateMemory(num_row, num_col);
-	
 }
 Matrix::Matrix(double value)
 {
@@ -22,7 +21,6 @@ Matrix::Matrix(int r, int c)
 
 	// allocate here memory for the matrix 
 	AllocateMemory(num_row, num_col);
-
 }
 
 Matrix::Matrix(int r, int c, double value)
@@ -33,7 +31,6 @@ Matrix::Matrix(int r, int c, double value)
 	AllocateMemory(num_row, num_col);
 
 	setMat(value);
-
 }
 
 Matrix::Matrix(double* pMat, int row,int col):num_row(row), num_col(col)
@@ -51,9 +48,9 @@ Matrix::Matrix(double* pMat, int row,int col):num_row(row), num_col(col)
 
 Matrix::Matrix(Matrix& other) // that is the default copy constructor
 {
+	// this is needed to avoid making a shallow copy.
 	* this = other;
 }
-
 
 void Matrix::CheckDimensions(int r, int c)
 {
@@ -109,7 +106,7 @@ void Matrix::AllocateMemory(int row, int col)
 
 void Matrix::resize(int r, int c)
 {
-	deAllocateMemory();
+	deAllocateMemory(); // clean up
 
 	if (r > 0)
 		num_row = r;
@@ -281,7 +278,7 @@ void Matrix::setElem(int r, int c, double value)
 ///////////////////////////////////////////////////////////////////////////////
 void Matrix::setMat(double val)
 {
-	//all values are set to "val"
+	//all elements values are set to "val"
 	for (int i = 0; i < num_row; i++)
 		for (int j = 0; j < num_col; j++)
 		{
@@ -291,7 +288,6 @@ void Matrix::setMat(double val)
 
 ///////////////////////////////////////////////////////////////////////////////
 //Returns column vector of col c
-///////////////////////////////////////////////////////////////////////////////
 void Matrix::getCol(Matrix &out, int c) const
 {
 	out.resize(num_row, 1);
@@ -304,8 +300,6 @@ void Matrix::getCol(Matrix &out, int c) const
 
 ///////////////////////////////////////////////////////////////////////////////
 //Returns vector of row r
-//Example: vector = MAT.row_vector(2);
-///////////////////////////////////////////////////////////////////////////////
 void Matrix::getRow(Matrix &out,int r) const
 {
 	out.resize(1, num_col);
