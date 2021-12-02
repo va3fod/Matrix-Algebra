@@ -50,6 +50,7 @@ Matrix::Matrix(Matrix& other) // that is the default copy constructor
 {
 	// this is needed to avoid making a shallow copy.
 	* this = other;
+	cout << "default copy constructor called" << endl;
 }
 
 void Matrix::CheckDimensions(int r, int c)
@@ -1004,7 +1005,6 @@ Matrix& Matrix::sub_matrix(int r, int c)
 	pMatTmp->MatTemp = 1;
 	return *pMatTmp;
 }
-
 /////////////////////////////////////////////////////////////////////////////
 //Builds unit vector from 3x1 vector
 void Matrix::unitvec3(Matrix &out)

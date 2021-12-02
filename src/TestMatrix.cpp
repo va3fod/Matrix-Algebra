@@ -77,13 +77,19 @@ int main()
 
     
     Matrix B=A;
+    //Matrix B(A);
+    Matrix C(A);
     
     A += A;
+
     A.print("A = ");
     B.print("B = ");
-    bool eq = A == B ? 1 : 0;
+    C.print("C = ");
 
-    A = B * A + 2 - B * 3; 
+    bool eq1 = A == B ? 1 : 0;
+    bool eq2 = A == C ? 1 : 0;
+
+    A = B * A + 2 - B * 3 + C * 10;
     
     A.print("A = ");
 
