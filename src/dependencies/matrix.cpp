@@ -728,16 +728,26 @@ Matrix& Matrix::operator+(double b)
 //Addition operator, returns matrix addition
 Matrix& Matrix::operator+(Matrix &b)
 {
-	Matrix* pMatTmp = new Matrix(num_row, num_col);
+	Matrix* pMatTmp=nullptr;
 
-	for (int i = 0; i < num_row; i++)
-		for (int j = 0; j < num_col; j++)
-		{
-			pMatTmp->pd[i][j] = pd[i][j] + b.pd[i][j];
-		}
+	if (num_row == b.num_row && num_col == b.num_col)
+	{
+		pMatTmp = new Matrix(num_row, num_col);
 
-	pMatTmp->MatTemp = 1;
+		for (int i = 0; i < num_row; i++)
+			for (int j = 0; j < num_col; j++)
+			{
+				pMatTmp->pd[i][j] = pd[i][j] + b.pd[i][j];
+			}
 
+		pMatTmp->MatTemp = 1;	
+	}
+	else 
+	{
+		cout << "Invalid Matrix dimensions in 'operator +" << endl; 
+	}
+
+	
 	return *pMatTmp;
 }
 
@@ -790,22 +800,24 @@ Matrix& Matrix::operator-(double b)
 //Substraction operator, returns matrix substraction
 Matrix& Matrix::operator-(Matrix &b)
 {
-	Matrix* pMatTmp = new Matrix(num_row, num_col);
+	Matrix* pMatTmp = nullptr;
 
-	if ((num_col!=b.num_col)&&(num_row!=b.num_row))
+	if (num_row == b.num_row && num_col == b.num_col)
 	{
-		cout<<"Invalid Matrix dimensions in operator-"<<endl;
-	}
-	else
-	{
-		for (int i=0;i<num_row;i++)
+		pMatTmp = new Matrix(num_row, num_col);
+
+		for (int i = 0; i < num_row; i++)
 			for (int j = 0; j < num_col; j++)
 			{
 				pMatTmp->pd[i][j] = pd[i][j] - b.pd[i][j];
 			}
-	}
 
-	pMatTmp->MatTemp = 1;
+		pMatTmp->MatTemp = 1;
+	}
+	else
+	{
+		cout << "Invalid Matrix dimensions in 'operator -" << endl;
+	}
 
 	return *pMatTmp;
 }
@@ -842,6 +854,8 @@ void Matrix::operator-=(Matrix &b)
 ///////////////////////////////////////////////////////////////////////////////
 void Matrix::operator=(Matrix &b)
 {
+	if (&b)
+	{
 		resize(b.num_row, b.num_col);
 
 		for (int ii = 0; ii < num_row; ii++)
@@ -856,9 +870,11 @@ void Matrix::operator=(Matrix &b)
 		{
 			if (b.pd)
 			{
-				delete &b;
+				delete& b;
 			}
 		}
+	}
+		
 }
 
 ///////////////////////////////////////////////////////////////////////////////

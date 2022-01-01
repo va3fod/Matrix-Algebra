@@ -68,6 +68,11 @@ int main()
     AA.inverse(invMat);
     invMat.print("invMat");*/
 
+    Matrix xx(3, 3, 1);
+    Matrix yy(2, 2, 2);
+    Matrix zz(2,2,9);
+    zz = xx - yy;
+
 
     Matrix A(4, 4, 2);
 
