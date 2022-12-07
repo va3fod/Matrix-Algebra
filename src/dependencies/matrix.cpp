@@ -8,7 +8,7 @@ Matrix::Matrix():num_row(MATDIM),num_col(MATDIM)
 	// allocate here memory for the matrix for a default size 3x3
 	AllocateMemory(num_row, num_col);
 }
-Matrix::Matrix(double value)
+Matrix::Matrix(const double &value)
 {
 	// allocate here memory for the matrix for a default size 3x3
 	AllocateMemory(num_row, num_col);
@@ -23,7 +23,7 @@ Matrix::Matrix(int r, int c)
 	AllocateMemory(num_row, num_col);
 }
 
-Matrix::Matrix(int r, int c, double value)
+Matrix::Matrix(int r, int c, const double &value)
 {
 	CheckDimensions(r, c);
 

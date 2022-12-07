@@ -28,9 +28,9 @@ public:
 	double** pd=NULL;  //  data
 	
 	Matrix();
-	Matrix(double value);
+	Matrix(const double &value);
 	Matrix(int r, int c);
-	Matrix(int r, int c,double value);
+	Matrix(int r, int c,const double &value);
 	Matrix(double* pMat, int row, int col);
 	Matrix(Matrix &other); 
 	

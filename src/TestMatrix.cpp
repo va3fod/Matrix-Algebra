@@ -2,8 +2,6 @@
 #include "matrix.h"
 #include <iostream>
 
-
-
 int main()
 {
     // sample use of Matrix class
@@ -83,18 +81,18 @@ int main()
     
     Matrix B=A;
     //Matrix B(A);
-    Matrix C(A);
+    Matrix CC(A);
     
     A += A;
 
     A.print("A = ");
     B.print("B = ");
-    C.print("C = ");
+    CC.print("C = ");
 
     bool eq1 = A == B ? 1 : 0;
-    bool eq2 = A == C ? 1 : 0;
+    bool eq2 = A == CC ? 1 : 0;
 
-    A = B * A + 2 - B * 3 + C * 10;
+    A = B * A + 2 - B * 3 + CC * 10;
     
     A.print("A = ");
 
@@ -103,24 +101,24 @@ int main()
 
   
 
- /*   Matrix C(2, 3, 2), D(3, 4, 2);
+    Matrix C(2, 3, 2), D(3, 4, 2);
     Matrix Prod;
 
     C.print("C = ");
     D.print("D = ");
 
     Prod = C * D;
-    Prod.print("Prd matrix = ");*/
+    Prod.print("Prd matrix = ");
 
-   /* Matrix v1(3, 1, 2);
+    Matrix v1(3, 1, 2);
     Matrix v2(3, 1, -3);
 
     Matrix v3;
     v3 = v1 * v2;
-    v3.print("v3=");*/
+    v3.print("v3=");
     
-    Matrix v1(3, 1, 2),v2(3,1,3);
-    double dotProd = v1 ^ v2;
+    Matrix v11(3, 1, 2),v22(3,1,3);
+    double dotProd = v11 ^ v22;
     cout << "dot prod = " << dotProd << endl;
 
     Matrix AA(3, 3, 2);
@@ -134,6 +132,19 @@ int main()
     Matrix INV;
     AA.inverse(INV);
     INV.print("INV of A = ");
+
+    // print new line saying "this is new test"
+	cout << "this is new test" << endl;
+	// create a Matrix object called XA and initialize it to 3x3 matrix with all elements set to 7
+    double temp = 3;
+	Matrix XA(8);
+	// print all "XA" elements
+	XA.print("XA = ");
+    
+    
+	
+    
+    
 
     std::cin.get();
 }
