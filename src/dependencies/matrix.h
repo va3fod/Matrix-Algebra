@@ -43,10 +43,10 @@ public:
 	const double mag(void);
 
 	//Assigns a value to a matrix element
-	void setElem(int r,int c,double value);
+	void setElem(int r,int c,const double &value);
 
 	//set all matrix elements to the user defined value
-	void setMat(double val);
+	void setMat(const double &val);
 
 	//Returns the value at location r, c of matrix
 	const double getElem(int r, int c) const;
@@ -162,5 +162,6 @@ public:
 
 	//Alternate transposes Aij=>Aji
 	Matrix& operator~();
+
 };
 

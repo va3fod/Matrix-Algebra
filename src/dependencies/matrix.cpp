@@ -265,7 +265,7 @@ Matrix& Matrix::cartesian2polar(void)
 
 //////////////////////////////////////////////////////////////////////////////
 //Assigns a value to a matrix element
-void Matrix::setElem(int r, int c, double value)
+void Matrix::setElem(int r, int c, const double &value)
 {
 	if (r < num_row && c < num_col)
 	{
@@ -277,7 +277,7 @@ void Matrix::setElem(int r, int c, double value)
 	}
 }
 ///////////////////////////////////////////////////////////////////////////////
-void Matrix::setMat(double val)
+void Matrix::setMat(const double &val)
 {
 	//all elements values are set to "val"
 	for (int i = 0; i < num_row; i++)
