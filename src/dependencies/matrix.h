@@ -109,6 +109,7 @@ public:
 
 	//Returns the inverse of a square matrix AMAT
 	void inverse(Matrix& out);
+	Matrix & inverse(void);
 
 
 	//********************************************************* Operator declarations *********************************************

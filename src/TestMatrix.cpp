@@ -65,7 +65,7 @@ int main()
     Matrix invMat(2, 3);
     AA.inverse(invMat);
     invMat.print("invMat");*/
-
+/*
     Matrix xx(3, 3, 1);
     Matrix yy(2, 2, 2);
     Matrix zz(2,2,9);
@@ -141,8 +141,49 @@ int main()
 	// print all "XA" elements
 	XA.print("XA = ");
     
-    
+    */
 	
+    Matrix AA(3, 3, 1);
+    Matrix Ainv(AA);
+    
+    AA.setElem(0, 0, 4);
+    AA.setElem(0, 1, 1);
+    AA.setElem(0, 2, 1);
+
+    AA.setElem(1, 0, 1);
+    AA.setElem(1, 1, 3);
+    AA.setElem(1, 2, 2);
+
+    AA.setElem(2, 0, 1);
+    AA.setElem(2, 1, 2);
+    AA.setElem(2, 2, 3);
+    AA.print("AA");
+
+	Matrix bb(3, 1, 1);
+	bb.setElem(0, 0, 1);
+    bb.setElem(1, 0, 2);
+    bb.setElem(2, 0, 3);
+    
+	bb.print("bb");
+    
+    Matrix xx(3, 1, 0);
+
+    //AA.inverse(Ainv);
+	xx = AA.inverse() * bb;
+    // print xx
+	xx.print("xx");
+
+    // print the inverse of AA
+	AA.inverse().print("inverse of AA");
+    
+    
+    /*
+    MatrixXd A(3, 3);
+    A << 4, 1, 1,
+        1, 3, 2,
+        1, 2, 3;
+    VectorXd b(3);
+    b << 1, 2, 3;*/
     
     
 

@@ -430,6 +430,36 @@ void Matrix::inverse(Matrix &out)
 		
 	}
 }
+//Returns the inverse of a square matrix A
+//Inv  A^-1 = (1/det(A)) * adj(A)
+Matrix & Matrix::inverse(void)
+{
+	double d = 0;
+	Matrix* pMatTmp = new Matrix(num_row, num_col);
+
+	if (num_col != num_row)
+	{
+		cout << "Matrix is not square" << endl;
+	}
+	else
+	{
+		d = det();
+		if (abs(d) > EPS_MATRIX)
+		{
+			d = 1 / d;
+			adjoint(*pMatTmp);
+			*pMatTmp *= d;
+		}
+		else
+		{
+			cout << "Determinant is zero, inverse does not exist" << endl;
+		}
+	}
+
+	pMatTmp->MatTemp = 1;
+
+	return *pMatTmp;
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 //Returns the Determinant using the recursive procedure
