@@ -164,5 +164,14 @@ public:
 	//Alternate transposes Aij=>Aji
 	Matrix& operator~();
 
+	// define operator to access Matrix elements as object[i][j] 
+	double * operator[](int i)
+	{
+		// add checks to make sure we are not accessing index out of bounds for "pd"
+		// tbd
+		
+		return pd[i];
+	}
+
 };
 
