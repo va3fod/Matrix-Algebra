@@ -2,7 +2,6 @@
 #define _USE_MATH_DEFINES
 #include <iostream>
 #include <cmath>
-#include <string>
 
 using std::cout;
 using std::endl;
@@ -65,7 +64,19 @@ public:
 	void print(int r, int c) const;
 	void print(void) const;
 	void print(const std::string MatName);
-	std::string operator<<(Matrix & b);
+	
+	friend std::ostream& operator<<(std::ostream& out, const Matrix& m) 
+	{
+		for (int i = 0; i < m.num_row; i++)
+		{
+			for (int j = 0; j < m.num_col; j++)
+			{
+				out << m.pd[i][j] << " ";
+			}
+			out << std::endl;
+		}
+		return out;
+	}
 
 	//Returns a nxn diagonal matrix from nx1 or 1xn vector
 	void buildDiag(Matrix& out);

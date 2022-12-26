@@ -5,9 +5,7 @@
 int main()
 {
     // sample use of Matrix class
-  
     Matrix AA(3, 3, 1);
-    Matrix Ainv(AA);
 
 	AA[0][0] = 4;
 	AA[0][1] = 1;
@@ -20,7 +18,8 @@ int main()
 	AA[2][0] = 1;
 	AA[2][1] = 2;
     AA[2][2] = 3;
-    AA.print("AA");
+	std::cout << "AA = " << std::endl;
+	std::cout << AA << std::endl;
 	
 
 	Matrix bb(3, 1, 1);    
@@ -37,6 +36,8 @@ int main()
 
     // print the inverse of AA
 	AA.inverse().print("inverse of AA");
+
+	
 
     std::cin.get();
 }
