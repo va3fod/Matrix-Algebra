@@ -2,6 +2,7 @@
 #define _USE_MATH_DEFINES
 #include <iostream>
 #include <cmath>
+#include <string>
 
 using std::cout;
 using std::endl;
@@ -64,6 +65,7 @@ public:
 	void print(int r, int c) const;
 	void print(void) const;
 	void print(const std::string MatName);
+	std::string operator<<(Matrix & b);
 
 	//Returns a nxn diagonal matrix from nx1 or 1xn vector
 	void buildDiag(Matrix& out);
@@ -110,7 +112,6 @@ public:
 	//Returns the inverse of a square matrix AMAT
 	void inverse(Matrix& out);
 	Matrix & inverse(void);
-
 
 	//********************************************************* Operator declarations *********************************************
 	//Inequality relational operator, returns true or false
@@ -165,13 +166,44 @@ public:
 	Matrix& operator~();
 
 	// define operator to access Matrix elements as object[i][j] 
-	double * operator[](int i)
+	double* operator[](int i)
 	{
 		// add checks to make sure we are not accessing index out of bounds for "pd"
-		// tbd
-		
-		return pd[i];
+		if (i < num_row)
+		{
+			return pd[i];
+		}
+		return nullptr;
 	}
+
+	// Solve the system of linear equations Ax = b using the conjugate gradient method
+/*	Matrix conjugateGradient(const Matrix& A, const Matrix& b, int maxIterations = 1000, double tolerance = 1e-6)
+	{
+		int n = b.size();
+		
+		Matrix x = Matrix::Zero(n);
+		Matrix r = b; // or just b as a starting point
+		Matrix p = b;
+		double rr = r.dot(r);
+
+		for (int i = 0; i < maxIterations; i++)
+		{
+			VectorXd Ap = A * p;
+			double alpha = rr / p.dot(Ap);
+			x += alpha * p;
+			r -= alpha * Ap;
+			double rrNew = r.dot(r);
+			if (rrNew < tolerance)
+			{
+				std::cout << "Conjugate gradient method converged in " << i << " iterations" << std::endl;
+				break;
+			}
+			p = r + (rrNew / rr) * p;
+			rr = rrNew;
+		}
+
+		return x;
+	}*/
 
 };
 

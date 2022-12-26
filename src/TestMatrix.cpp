@@ -21,6 +21,7 @@ int main()
 	AA[2][1] = 2;
     AA[2][2] = 3;
     AA.print("AA");
+	
 
 	Matrix bb(3, 1, 1);    
 	bb[0][0] = 2;
