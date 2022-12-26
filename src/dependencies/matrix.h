@@ -65,7 +65,7 @@ public:
 	void print(void) const;
 	void print(const std::string MatName);
 	
-	friend std::ostream& operator<<(std::ostream& out, const Matrix& m) 
+	friend std::ostream& operator<<(std::ostream& out, const Matrix& m)
 	{
 		for (int i = 0; i < m.num_row; i++)
 		{
@@ -124,6 +124,10 @@ public:
 	void inverse(Matrix& out);
 	Matrix & inverse(void);
 
+	// Solve the system of linear equations Ax = b using the conjugate gradient method
+	// tbd here
+
+
 	//********************************************************* Operator declarations *********************************************
 	//Inequality relational operator, returns true or false
 	bool operator!=(Matrix &b);
@@ -177,44 +181,8 @@ public:
 	Matrix& operator~();
 
 	// define operator to access Matrix elements as object[i][j] 
-	double* operator[](int i)
-	{
-		// add checks to make sure we are not accessing index out of bounds for "pd"
-		if (i < num_row)
-		{
-			return pd[i];
-		}
-		return nullptr;
-	}
+	double* operator[](int i);
 
-	// Solve the system of linear equations Ax = b using the conjugate gradient method
-/*	Matrix conjugateGradient(const Matrix& A, const Matrix& b, int maxIterations = 1000, double tolerance = 1e-6)
-	{
-		int n = b.size();
-		
-		Matrix x = Matrix::Zero(n);
-		Matrix r = b; // or just b as a starting point
-		Matrix p = b;
-		double rr = r.dot(r);
-
-		for (int i = 0; i < maxIterations; i++)
-		{
-			VectorXd Ap = A * p;
-			double alpha = rr / p.dot(Ap);
-			x += alpha * p;
-			r -= alpha * Ap;
-			double rrNew = r.dot(r);
-			if (rrNew < tolerance)
-			{
-				std::cout << "Conjugate gradient method converged in " << i << " iterations" << std::endl;
-				break;
-			}
-			p = r + (rrNew / rr) * p;
-			rr = rrNew;
-		}
-
-		return x;
-	}*/
-
+	
 };
 

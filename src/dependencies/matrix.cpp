@@ -971,6 +971,16 @@ Matrix& Matrix::operator~()
 	return *pMatTmp;
 }
 
+double* Matrix::operator[](int i)
+{
+	// add checks to make sure we are not accessing index out of bounds for "pd"
+	if (i < num_row)
+	{
+		return pd[i];
+	}
+	return nullptr;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 //Returns the skew-symmetric matrix from a 3-dim vector
 //			| 0 -c  b|		|a|
@@ -1073,3 +1083,30 @@ void Matrix::unitvec3(Matrix &out)
 	}
 }
 
+/*	Matrix conjugateGradient(const Matrix& A, const Matrix& b, int maxIterations = 1000, double tolerance = 1e-6)
+	{
+		int n = b.size();
+
+		Matrix x = Matrix::Zero(n);
+		Matrix r = b; // or just b as a starting point
+		Matrix p = b;
+		double rr = r.dot(r);
+
+		for (int i = 0; i < maxIterations; i++)
+		{
+			VectorXd Ap = A * p;
+			double alpha = rr / p.dot(Ap);
+			x += alpha * p;
+			r -= alpha * Ap;
+			double rrNew = r.dot(r);
+			if (rrNew < tolerance)
+			{
+				std::cout << "Conjugate gradient method converged in " << i << " iterations" << std::endl;
+				break;
+			}
+			p = r + (rrNew / rr) * p;
+			rr = rrNew;
+		}
+
+		return x;
+	}*/
