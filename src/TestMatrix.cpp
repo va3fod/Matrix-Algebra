@@ -37,6 +37,11 @@ int main()
     // print the inverse of AA
 	AA.inverse().print("inverse of AA");
 
+	int rez = 0;
+	
+	rez = AA[0][0] + AA[0][1] + AA[0][2];
+	// print rez
+	std::cout << "rez = " << rez << std::endl;
 	
 
     std::cin.get();
