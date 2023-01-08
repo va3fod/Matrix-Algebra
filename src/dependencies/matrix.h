@@ -130,14 +130,8 @@ public:
 
 	//Returns the inverse of a square matrix AMAT
 	void inverse(Matrix& out);
-	Matrix & inverse(void);
+	Matrix & inv(void);
 
-	// Solve the system of linear equations Ax = b using the conjugate gradient method
-	
-	//Matrix conjugateGradient(Matrix& A, Matrix& b, int maxIterations = 1000, double tolerance = 1e-6);
-	
-
-	//********************************************************* Operator declarations *********************************************
 	//Inequality relational operator, returns true or false
 	bool operator!=(Matrix &b);
 
@@ -196,4 +190,5 @@ public:
 	
 };
 
+// Solve the system of linear equations Ax = b using the conjugate gradient method
 Matrix conjugateGradient(Matrix& A, Matrix& b, int maxIterations = 1000, double tolerance = 1e-6);

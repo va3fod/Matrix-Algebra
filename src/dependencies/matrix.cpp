@@ -456,7 +456,7 @@ void Matrix::inverse(Matrix &out)
 }
 //Returns the inverse of a square matrix A
 //Inv  A^-1 = (1/det(A)) * adj(A)
-Matrix & Matrix::inverse(void)
+Matrix & Matrix::inv(void)
 {
 	double d = 0;
 	Matrix* pMatTmp = new Matrix(num_row, num_col);

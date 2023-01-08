@@ -37,12 +37,12 @@ int main()
 
 	xx = conjugateGradient(AA, bb);
 
-	//xx = AA.inverse() * bb;
+	//xx = AA.inv() * bb;
     // print xx
 	xx.print("xx");
 
     // print the inverse of AA
-	AA.inverse().print("inverse of AA");
+	AA.inv().print("inverse of AA");
 	
 
     std::cin.get();
