@@ -53,6 +53,13 @@ Matrix::Matrix(Matrix& other) // that is the default copy constructor
 	cout << "default copy constructor called" << endl;
 }
 
+Matrix::Matrix(const Matrix& other) // that is the default copy constructor
+{
+	// this is needed to avoid making a shallow copy.
+	*this = other;
+	cout << "default copy constructor called" << endl;
+}
+
 void Matrix::CheckDimensions(int r, int c)
 {
 	if (r > 0)
@@ -136,6 +143,23 @@ bool Matrix::CheckVectors(Matrix& V1, Matrix& V2, int* length, bool* rowsDim)
 		*length = 0;
 		*rowsDim = true;
 		cout <<"vectors dimentions are not the same" << endl;
+		return false;
+	}
+}
+
+bool Matrix::CheckVectors(const Matrix& V1, const  Matrix& V2, int* length, bool* rowsDim)
+{
+	if ((V1.num_row == V2.num_row) && (V1.num_col == V2.num_col) && (V1.num_row == 1 || V1.num_col == 1))
+	{
+		*length = num_row > num_col ? num_row : num_col;
+		*rowsDim = num_row > num_col ? true : false;
+		return true;
+	}
+	else
+	{
+		*length = 0;
+		*rowsDim = true;
+		cout << "vectors dimentions are not the same" << endl;
 		return false;
 	}
 }
@@ -635,6 +659,7 @@ Matrix& Matrix::operator*(double b)
 	return *pMatTmp;
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////
 //Multiplication operator
 Matrix& Matrix::operator*(Matrix& b)
@@ -682,6 +707,7 @@ Matrix& Matrix::operator*(Matrix& b)
 	
 	return *pMatTmp;
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //Scalar multiplication assignment operator (scalar element by element multiplication)
@@ -906,6 +932,31 @@ void Matrix::operator=(Matrix &b)
 	}
 		
 }
+void Matrix::operator=(const Matrix& b)
+{
+	if (&b)
+	{
+		resize(b.num_row, b.num_col);
+
+		for (int ii = 0; ii < num_row; ii++)
+		{
+			for (int jj = 0; jj < num_col; jj++)
+			{
+				pd[ii][jj] = b.pd[ii][jj];
+			}
+		}
+
+		if (b.MatTemp)
+		{
+			if (b.pd)
+			{
+				delete& b;
+			}
+		}
+	}
+
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //Equality relational operator of 2 identical matrixes
@@ -1083,30 +1134,51 @@ void Matrix::unitvec3(Matrix &out)
 	}
 }
 
-/*	Matrix conjugateGradient(const Matrix& A, const Matrix& b, int maxIterations = 1000, double tolerance = 1e-6)
+const int Matrix::size(void) 
+{
+	MatrixSize = num_row * num_col;
+	return num_row * num_col;
+}
+
+ Matrix conjugateGradient( Matrix& A,  Matrix& b, int maxIterations, double tolerance)
+{
+	int n = b.size();
+	
+	//Matrix x = Matrix::Zero(n);
+	Matrix x(n, 1, 0);
+	
+	//Matrix r = b; // or just b as a starting point
+	Matrix r = b;
+	Matrix p = b;
+	
+	//double rr = r.dot(r);
+	double rr = r^r;
+
+	for (int i = 0; i < maxIterations; i++)
 	{
-		int n = b.size();
-
-		Matrix x = Matrix::Zero(n);
-		Matrix r = b; // or just b as a starting point
-		Matrix p = b;
-		double rr = r.dot(r);
-
-		for (int i = 0; i < maxIterations; i++)
+		Matrix Ap = A * p;
+		
+		//double alpha = rr / p.dot(Ap);
+		double alpha = rr / (p^Ap);
+		
+		//x += alpha * p;
+		x +=  p * alpha;
+		
+		//r -= alpha * Ap;
+		r -=  Ap * alpha;
+		
+		//double rrNew = r.dot(r);
+		double rrNew = r^r;
+		
+		if (rrNew < tolerance)
 		{
-			VectorXd Ap = A * p;
-			double alpha = rr / p.dot(Ap);
-			x += alpha * p;
-			r -= alpha * Ap;
-			double rrNew = r.dot(r);
-			if (rrNew < tolerance)
-			{
-				std::cout << "Conjugate gradient method converged in " << i << " iterations" << std::endl;
-				break;
-			}
-			p = r + (rrNew / rr) * p;
-			rr = rrNew;
+			std::cout << "Conjugate gradient method converged in " << i << " iterations" << std::endl;
+			break;
 		}
+		p = r + p * (rrNew / rr);
+		
+		rr = rrNew;
+	}
 
-		return x;
-	}*/
+	return x;
+}

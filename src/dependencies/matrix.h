@@ -6,6 +6,8 @@
 using std::cout;
 using std::endl;
 
+
+
 // Matrix class --->>> VA3FOD
 class Matrix
 {
@@ -18,10 +20,12 @@ private:
 	void AllocateMemory(int row, int col);
 	void deAllocateMemory(void);
 	bool CheckVectors(Matrix& V1, Matrix& V2, int* length, bool *rowsDim);// returns true if the 2 vectors are identical (dimensions) 
+	bool CheckVectors(const Matrix& V1,const  Matrix& V2, int* length, bool* rowsDim);// returns true if the 2 vectors are identical (dimensions) 
 	void CheckDimensions(int r, int c);
 
 	int num_row = MATDIM; 
 	int num_col = MATDIM; 
+	int MatrixSize = num_row * num_col;
 
 public:
 
@@ -32,7 +36,8 @@ public:
 	Matrix(int r, int c);
 	Matrix(int r, int c,const double &value);
 	Matrix(double* pMat, int row, int col);
-	Matrix(Matrix &other); 
+	Matrix(Matrix &other);  // copy constructor
+	Matrix(const Matrix& other);// copy constructor
 	
 	~Matrix();
 
@@ -59,6 +64,9 @@ public:
 
 	//Returns vec 3x1 of from MAtrix row r
 	void getRow(Matrix& out, int r) const;
+
+	// Returns the size of the matrix
+	const int size(void) ;
 
 	//Displays Matrix on console
 	void print(int r, int c) const;
@@ -125,8 +133,9 @@ public:
 	Matrix & inverse(void);
 
 	// Solve the system of linear equations Ax = b using the conjugate gradient method
-	// tbd here
-
+	
+	//Matrix conjugateGradient(Matrix& A, Matrix& b, int maxIterations = 1000, double tolerance = 1e-6);
+	
 
 	//********************************************************* Operator declarations *********************************************
 	//Inequality relational operator, returns true or false
@@ -170,6 +179,7 @@ public:
 
 	//Assignment operator 
 	void operator=(Matrix &b);
+	void operator=(const Matrix& b);
 
 	//Equality relational operator, returns true or false
 	bool operator==(Matrix &b);
@@ -186,3 +196,4 @@ public:
 	
 };
 
+Matrix conjugateGradient(Matrix& A, Matrix& b, int maxIterations = 1000, double tolerance = 1e-6);

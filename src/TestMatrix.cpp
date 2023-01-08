@@ -23,25 +23,26 @@ int main()
 	
 
 	Matrix bb(3, 1, 1);    
+	Matrix brez(3, 1, 1);
+	
 	bb[0][0] = 2;
 	bb[1][0] = 1;
 	bb[2][0] = 1;
+
+	brez =  bb *2;
+	
 	bb.print("bb");
     
-    Matrix xx(3, 1,-99);
+	Matrix xx(3, 1, -99); // default to -99  just for testing
 
-	xx = AA.inverse() * bb;
+	xx = conjugateGradient(AA, bb);
+
+	//xx = AA.inverse() * bb;
     // print xx
 	xx.print("xx");
 
     // print the inverse of AA
 	AA.inverse().print("inverse of AA");
-
-	int rez = 0;
-	
-	rez = AA[0][0] + AA[0][1] + AA[0][2];
-	// print rez
-	std::cout << "rez = " << rez << std::endl;
 	
 
     std::cin.get();
