@@ -141,6 +141,10 @@ public:
 	//Multiplication operator, returns matrix product 
 	Matrix& operator*(Matrix& b);
 
+	// define the multiplication operator for a "double * Matrix" expression
+	friend Matrix operator*(const double& a, Matrix& b);
+	
+
 	//Scalar multiplication assignment operator (scalar element by element multiplication)
 	void operator*=(double b);
 

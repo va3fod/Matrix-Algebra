@@ -29,7 +29,12 @@ int main()
 	bb[1][0] = 1;
 	bb[2][0] = 1;
 
-	brez =  bb *2;
+	// 
+	brez = 2* bb;
+	std::cout << "brez = \n" <<brez<< std::endl;
+	brez = bb * 2 ;
+	std::cout << "brez = \n" << brez << std::endl;
+	
 	
 	bb.print("bb");
     
@@ -38,7 +43,7 @@ int main()
 	xx = conjugateGradient(AA, bb);
 
 	//xx = AA.inv() * bb;
-    // print xx
+    
 	xx.print("xx");
 
     // print the inverse of AA

@@ -50,14 +50,14 @@ Matrix::Matrix(Matrix& other) // that is the default copy constructor
 {
 	// this is needed to avoid making a shallow copy.
 	* this = other;
-	cout << "default copy constructor called" << endl;
+	//cout << "default copy constructor called" << endl;
 }
 
 Matrix::Matrix(const Matrix& other) // that is the default copy constructor
 {
 	// this is needed to avoid making a shallow copy.
 	*this = other;
-	cout << "default copy constructor called" << endl;
+	//cout << "default copy constructor called" << endl;
 }
 
 void Matrix::CheckDimensions(int r, int c)
@@ -658,6 +658,23 @@ Matrix& Matrix::operator*(double b)
 
 	return *pMatTmp;
 }
+
+// define the multiplication operator for a "double * Matrix" expression
+Matrix operator*(const double& a, Matrix& b)
+{
+	Matrix* pMatTmp = new Matrix(b.num_row, b.num_col);
+
+	for (int i = 0; i < b.num_row; i++)
+		for (int j = 0; j < b.num_col; j++)
+		{
+			pMatTmp->pd[i][j] = b.pd[i][j] * a;
+		}
+
+	pMatTmp->MatTemp = 1;
+
+	return *pMatTmp;
+}
+
 
 
 ///////////////////////////////////////////////////////////////////////////////
