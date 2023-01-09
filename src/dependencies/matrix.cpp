@@ -660,7 +660,7 @@ Matrix& Matrix::operator*(double b)
 }
 
 // define the multiplication operator for a "double * Matrix" expression
-Matrix operator*(const double& a, Matrix& b)
+Matrix& operator*(const double& a, Matrix& b)
 {
 	Matrix* pMatTmp = new Matrix(b.num_row, b.num_col);
 
@@ -674,7 +674,6 @@ Matrix operator*(const double& a, Matrix& b)
 
 	return *pMatTmp;
 }
-
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -1157,45 +1156,4 @@ const int Matrix::size(void)
 	return num_row * num_col;
 }
 
- Matrix conjugateGradient( Matrix& A,  Matrix& b, int maxIterations, double tolerance)
-{
-	int n = b.size();
-	
-	//Matrix x = Matrix::Zero(n);
-	Matrix x(n, 1, 0);
-	
-	//Matrix r = b; // or just b as a starting point
-	Matrix r = b;
-	Matrix p = b;
-	
-	//double rr = r.dot(r);
-	double rr = r^r;
-
-	for (int i = 0; i < maxIterations; i++)
-	{
-		Matrix Ap = A * p;
-		
-		//double alpha = rr / p.dot(Ap);
-		double alpha = rr / (p^Ap);
-		
-		//x += alpha * p;
-		x +=  p * alpha;
-		
-		//r -= alpha * Ap;
-		r -=  Ap * alpha;
-		
-		//double rrNew = r.dot(r);
-		double rrNew = r^r;
-		
-		if (rrNew < tolerance)
-		{
-			std::cout << "Conjugate gradient method converged in " << i << " iterations" << std::endl;
-			break;
-		}
-		p = r + p * (rrNew / rr);
-		
-		rr = rrNew;
-	}
-
-	return x;
-}
+ 

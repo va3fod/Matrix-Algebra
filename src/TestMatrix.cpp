@@ -30,9 +30,9 @@ int main()
 	bb[2][0] = 1;
 
 	// 
-	brez = 2* bb;
+	//brez = 2 + bb;
 	std::cout << "brez = \n" <<brez<< std::endl;
-	brez = bb * 2 ;
+	brez = bb + 2 ;
 	std::cout << "brez = \n" << brez << std::endl;
 	
 	
@@ -40,7 +40,7 @@ int main()
     
 	Matrix xx(3, 1, -99); // default to -99  just for testing
 
-	xx = conjugateGradient(AA, bb);
+	//xx = conjugateGradient(AA, bb);
 
 	//xx = AA.inv() * bb;
     

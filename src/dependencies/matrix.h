@@ -142,8 +142,7 @@ public:
 	Matrix& operator*(Matrix& b);
 
 	// define the multiplication operator for a "double * Matrix" expression
-	friend Matrix operator*(const double& a, Matrix& b);
-	
+	friend Matrix& operator*(const double& a, Matrix& b);
 
 	//Scalar multiplication assignment operator (scalar element by element multiplication)
 	void operator*=(double b);
@@ -193,6 +192,3 @@ public:
 
 	
 };
-
-// Solve the system of linear equations Ax = b using the conjugate gradient method
-Matrix conjugateGradient(Matrix& A, Matrix& b, int maxIterations = 1000, double tolerance = 1e-6);
