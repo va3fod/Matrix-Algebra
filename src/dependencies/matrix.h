@@ -156,6 +156,9 @@ public:
 	//Addition operator, returns matrix addition
 	Matrix& operator+(Matrix &b);
 
+	// define the addition operator for a "double + Matrix" expression
+	friend Matrix& operator+(const double& a, Matrix& b);
+
 	//Scalar addition assignment operator (scalar element by element addition)
 	void operator+=(double b);	
 	
@@ -167,6 +170,9 @@ public:
 
 	//Substraction operator, returns matrix substraction
 	Matrix& operator-(Matrix &b);
+	
+	// define the addition operator for a "double - Matrix" expression
+	friend Matrix& operator-(const double& a, Matrix& b);
 
 	//Scalar substraction assignment operator (scalar element by element substraction)
 	void operator-=(double b);
@@ -190,5 +196,4 @@ public:
 	// define operator to access Matrix elements as object[i][j] 
 	double* operator[](int i);
 
-	
 };

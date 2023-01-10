@@ -675,7 +675,6 @@ Matrix& operator*(const double& a, Matrix& b)
 	return *pMatTmp;
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////
 //Multiplication operator
 Matrix& Matrix::operator*(Matrix& b)
@@ -723,8 +722,6 @@ Matrix& Matrix::operator*(Matrix& b)
 	
 	return *pMatTmp;
 }
-
-
 ///////////////////////////////////////////////////////////////////////////////
 //Scalar multiplication assignment operator (scalar element by element multiplication)
 void Matrix::operator*=(double b)
@@ -777,7 +774,6 @@ void Matrix::operator*=(Matrix &b)
 			}
 	}
 }
-   
 ///////////////////////////////////////////////////////////////////////////////
 //Scalar Addition operator (scalar element by element addition)
 //Note: scalar must be the second operand
@@ -795,7 +791,21 @@ Matrix& Matrix::operator+(double b)
 
 	return *pMatTmp;
 }
+// define the addition operator for a "double + Matrix" expression
+Matrix& operator+(const double& a, Matrix& b)
+{
+	Matrix* pMatTmp = new Matrix(b.num_row, b.num_col);
 
+	for (int i = 0; i < b.num_row; i++)
+		for (int j = 0; j < b.num_col; j++)
+		{
+			pMatTmp->pd[i][j] = b.pd[i][j] + a;
+		}
+
+	pMatTmp->MatTemp = 1;
+
+	return *pMatTmp;
+}
 ///////////////////////////////////////////////////////////////////////////////
 //Addition operator, returns matrix addition
 Matrix& Matrix::operator+(Matrix &b)
@@ -818,11 +828,8 @@ Matrix& Matrix::operator+(Matrix &b)
 	{
 		cout << "Invalid Matrix dimensions in 'operator +" << endl; 
 	}
-
-	
 	return *pMatTmp;
 }
-
 ///////////////////////////////////////////////////////////////////////////////
 //Scalar addition assignment operator (scalar element by element addition)
 void Matrix::operator+=(double b)
@@ -833,7 +840,6 @@ void Matrix::operator+=(double b)
 			pd[i][j] = pd[i][j] + b;
 		}	
 }
-
 ///////////////////////////////////////////////////////////////////////////////
 //Addition assignment operator
 void Matrix::operator+=(Matrix &b)
@@ -849,7 +855,6 @@ void Matrix::operator+=(Matrix &b)
 		}	
 	}
 }
-
 ///////////////////////////////////////////////////////////////////////////////
 //Scalar substraction operator (scalar element by element substraction)
 //scalar must be the second operand
@@ -867,7 +872,21 @@ Matrix& Matrix::operator-(double b)
 
 	return *pMatTmp;
 }
+// define the subtraction operator for a "double - Matrix" expression
+Matrix& operator-(const double& a, Matrix& b)
+{
+	Matrix* pMatTmp = new Matrix(b.num_row, b.num_col);
 
+	for (int i = 0; i < b.num_row; i++)
+		for (int j = 0; j < b.num_col; j++)
+		{
+			pMatTmp->pd[i][j] = b.pd[i][j] - a;
+		}
+
+	pMatTmp->MatTemp = 1;
+
+	return *pMatTmp;
+}
 ///////////////////////////////////////////////////////////////////////////////
 //Substraction operator, returns matrix substraction
 Matrix& Matrix::operator-(Matrix &b)

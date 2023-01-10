@@ -29,25 +29,25 @@ int main()
 	bb[1][0] = 1;
 	bb[2][0] = 1;
 
-	// 
-	//brez = 2 + bb;
+	brez = 2 - bb;
 	std::cout << "brez = \n" <<brez<< std::endl;
-	brez = bb + 2 ;
+	
+	brez = bb - 2 ;
 	std::cout << "brez = \n" << brez << std::endl;
 	
 	
-	bb.print("bb");
+	//bb.print("bb");
     
-	Matrix xx(3, 1, -99); // default to -99  just for testing
+	//Matrix xx(3, 1, -99); // default to -99  just for testing
 
 	//xx = conjugateGradient(AA, bb);
 
 	//xx = AA.inv() * bb;
     
-	xx.print("xx");
+	//xx.print("xx");
 
     // print the inverse of AA
-	AA.inv().print("inverse of AA");
+	//AA.inv().print("inverse of AA");
 	
 
     std::cin.get();
