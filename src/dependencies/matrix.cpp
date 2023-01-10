@@ -374,7 +374,7 @@ void Matrix::print(void) const
 void Matrix::print(const std::string MatName)
 {
 	cout << endl;
-	cout << "\""<<MatName <<"\""<< " is :";
+	cout << MatName << "(" << num_row << "," << num_col << ") = ";
 	print();
 
 }

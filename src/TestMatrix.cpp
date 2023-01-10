@@ -28,17 +28,17 @@ int main()
 	bb[2][0] = 1;
 	bb.print("bb");
 	
-	brez = AA*bb;
+	brez = 2;
 	brez.print("brez");
 	
 	brez = (AA*bb)  + (bb^bb) ;
 	brez.print("(AA*bb)  + (bb^bb)");
-	//std::cout << "brez = \n" << brez << std::endl;
+	std::cout << "brez" << brez << std::endl;
 	
 	BB = ~AA;
 
 	AA.print("AA");
-	std::cout << "BB = \n" << BB << std::endl;
+	std::cout << "BB" << BB << std::endl;
 	
 	// Ax=b;
 	xx = AA.inv() * bb;

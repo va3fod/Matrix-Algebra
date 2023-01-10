@@ -75,6 +75,7 @@ public:
 	
 	friend std::ostream& operator<<(std::ostream& out, const Matrix& m)
 	{
+		out << "(" << m.num_row << "," << m.num_col << ") = \n";
 		for (int i = 0; i < m.num_row; i++)
 		{
 			for (int j = 0; j < m.num_col; j++)
