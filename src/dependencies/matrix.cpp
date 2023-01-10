@@ -99,6 +99,7 @@ void Matrix::deAllocateMemory(void)
 void Matrix::AllocateMemory(int row, int col)
 {
 	pd = NULL;
+	size();
 	
 	// allocate here memory for the matrix via the double pointer
 	pd = new double* [row];
@@ -361,7 +362,7 @@ void Matrix::print(int r,int c) const
 void Matrix::print(void) const
 {
 	cout << endl;
-
+	
 	for (int i = 0; i < num_row; i++)
 	{
 		for (int j = 0; j < num_col; j++)
@@ -967,6 +968,14 @@ void Matrix::operator=(Matrix &b)
 	}
 		
 }
+void Matrix::operator=(double b)
+{
+	resize(1, 1);
+
+	pd[0][0] = b;
+		
+}
+
 void Matrix::operator=(const Matrix& b)
 {
 	if (&b)

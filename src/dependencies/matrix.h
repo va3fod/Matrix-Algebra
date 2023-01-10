@@ -183,6 +183,7 @@ public:
 
 	//Assignment operator 
 	void operator=(Matrix &b);
+	void operator=(double b);
 	void operator=(const Matrix& b);
 
 	//Equality relational operator, returns true or false

@@ -5,12 +5,16 @@
 int main()
 {
     // sample use of Matrix class
-    Matrix AA(3, 3, 1);
-	Matrix BB = AA;
-	Matrix bb(3, 1, 1);
+   // Matrix AA(3, 3, 1);
+	Matrix AAA(4, 4, 9);
+	//Matrix BB = AA;
+	//Matrix bb(3, 1, 1);
 	Matrix brez(3, 1, 1);
-	Matrix xx;
-
+	//Matrix xx;
+	
+	brez = 2+AAA;
+	brez.print("brez");
+/*
 	AA[0][0] = 4;
 	AA[0][1] = 1;
 	AA[0][2] = 1;
@@ -28,12 +32,8 @@ int main()
 	bb[2][0] = 1;
 	bb.print("bb");
 	
-	brez = 2;
-	brez.print("brez");
-	
 	brez = (AA*bb)  + (bb^bb) ;
-	brez.print("(AA*bb)  + (bb^bb)");
-	std::cout << "brez" << brez << std::endl;
+	brez.print("brez");
 	
 	BB = ~AA;
 
@@ -46,7 +46,7 @@ int main()
 
     // print the inverse of AA
 	AA.inv().print("inverse of AA");
-	
+	*/
 
     std::cin.get();
 }
