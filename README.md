@@ -5,8 +5,8 @@ The idea is of easy to use.
 
 int main()
 {
-  // sample use of Matrix class
-  Matrix AA(3, 3, 1);
+  	// sample use of Matrix class
+  	Matrix AA(3, 3, 1);
 	Matrix BB = AA;
 	Matrix bb(3, 1, 1);
 	Matrix brez(3, 1, 1);
@@ -22,7 +22,7 @@ int main()
     
 	AA[2][0] = 1;
 	AA[2][1] = 2;
-  AA[2][2] = 3;
+  	AA[2][2] = 3;
 	
 	bb[0][0] = 2;
 	bb[1][0] = 1;
@@ -45,7 +45,7 @@ int main()
 	xx = AA.inv() * bb;
 	xx.print("xx = A.inv() * b");
 
-  // print the inverse of AA
+  	// print the inverse of AA
 	AA.inv().print("inverse of AA");
 
 }
