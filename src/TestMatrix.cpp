@@ -5,15 +5,13 @@
 int main()
 {
     // sample use of Matrix class
-   // Matrix AA(3, 3, 1);
-	Matrix AAA(4, 4, 9);
-	//Matrix BB = AA;
-	//Matrix bb(3, 1, 1);
-	Matrix brez(3, 1, 1);
-	//Matrix xx;
+	Matrix v1(3, 1, 1);
+	Matrix v2(3, 1, 2);
+	double angle = 0;
+		
 	
-	brez = 2+AAA;
-	brez.print("brez");
+	
+
 /*
 	AA[0][0] = 4;
 	AA[0][1] = 1;

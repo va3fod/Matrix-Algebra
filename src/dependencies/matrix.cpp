@@ -617,7 +617,6 @@ Matrix& Matrix::cartesian2polar(void)
 	return *POLAR;
 }
 
-///////////////////////////////////////////////////////////////////////////////
 //Inequality relational operator
 bool Matrix::operator!=(Matrix &b)
 {
@@ -640,7 +639,6 @@ bool Matrix::operator!=(Matrix &b)
 	return false;
 }
 
-///////////////////////////////////////////////////////////////////////////////
 //Scalar multiplication assignment operator
 //Note: scalar must be the second operand
 Matrix& Matrix::operator*(double b)
@@ -996,10 +994,7 @@ void Matrix::operator=(const Matrix& b)
 			}
 		}
 	}
-
 }
-
-
 ///////////////////////////////////////////////////////////////////////////////
 //Equality relational operator of 2 identical matrixes
 bool Matrix::operator==(Matrix &b)
