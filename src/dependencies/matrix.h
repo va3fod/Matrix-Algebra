@@ -6,8 +6,6 @@
 using std::cout;
 using std::endl;
 
-
-
 // Matrix class --->>> VA3FOD
 class Matrix
 {
@@ -93,17 +91,8 @@ public:
 	//Returns the adjoint
 	void adjoint(Matrix& out);
 	
-	// Polar coordinates to cartesian transformation
-	// |V1|             | cos(elevation)*cos(azimuth)|
-	// |V2| = magnitude*|cos(elevation)*sin(azimuth) |
-	// |V3|		        |	  -sin(elevation)        |
-	void polar2cartesian(double mag,double az,double elev); // azimuth and elevation angles given in radians  , // to be moved to a sim util library type of space... as a function
-	
-	// Cartesian coordinates to polar transformation
-	// magnitude = POLAR(0,0) = |V|
-	// azimuth   = POLAR(1,0) = atan2(V2,V1)
-	// elevation = POLAR(2,0) = atan2(-V3,sqrt(V1^2+V2^2)
-	Matrix& cartesian2polar(void); // to be moved to a sim util library type of space... as a function
+	void polar2cartesian(double mag, double az, double elev);
+	Matrix& cartesian2polar(void);
 
 	//Returns the skew-symmetric matrix from a 3-dim vector VEC
 	//			| 0 -c  b|		|a|

@@ -227,67 +227,6 @@ void Matrix::buildDiag(Matrix &out)
 		out.pd[i][i] = pd[i][0];
 	}
 }
-
-///////////////////////////////////////////////////////////////////////////////
-//Calculates Cartesian from polar coordinates
-//|V1|             | cos(elevation)*cos(azimuth)|
-//|V2| = magnitude*|cos(elevation)*sin(azimuth) |
-//|V3|		       |	  -sin(elevation)       |
-void Matrix::polar2cartesian(double mag,double az,double elev)
-{
-	resize(3, 1);
-	setMat(0);
-	setElem(0,0, abs(mag) *(cos(elev)*cos(az)));
-	setElem(1,0, abs(mag) *(cos(elev)*sin(az)));
-	setElem(2,0, abs(mag) *(sin(elev)*(-1.0)));
-}
-
-///////////////////////////////////////////////////////////////////////////////
-//Returns polar from cartesian coordinates
-// magnitude = POLAR(0,0) = |V|
-// azimuth   = POLAR(1,0) = atan2(V2,V1)
-// elevation = POLAR(2,0) = atan2(-V3,sqrt(V1^2+V2^2)
-Matrix& Matrix::cartesian2polar(void)
-{
-	double d = 0.0; // magnitude
-	double azimuth = 0.0;
-	double elevation = 0.0;
-	double denom=0;
-
-	int max_size = num_row > num_col ? num_row : num_col;
-	Matrix* POLAR = new Matrix(max_size, 1);
-
-	double v1 = getElem(0, 0);
-	double v2 = getElem(1, 0);
-	double v3 = getElem(2, 0);
-
-	for (int i = 0; i < num_row; i++)
-		d += pd[i][0] * pd[i][0];
-	d = sqrt(d);
-
-	azimuth = atan2(v2, v1);
-
-	denom = sqrt(v1 * v1 + v2 * v2);
-	if (denom > 0.)
-		elevation = atan2(-v3, denom);
-	else 
-	{
-		if (v3 > 0) elevation = -M_PI / 2.;
-		if (v3 < 0) elevation = M_PI / 2.;
-		if (v3 == 0) elevation = 0.;
-	}
-
-	POLAR->setMat(0);
-
-	POLAR->pd[0][0] = d;
-	POLAR->pd[1][0] = azimuth;
-	POLAR->pd[2][0] = elevation;
-
-	POLAR->MatTemp = 1;
-
-	return *POLAR;
-}
-
 //////////////////////////////////////////////////////////////////////////////
 //Assigns a value to a matrix element
 void Matrix::setElem(int r, int c, const double &value)
@@ -617,6 +556,65 @@ int Matrix::rank(void)
 		}
 			
 	return rank;
+}
+///////////////////////////////////////////////////////////////////////////////
+//Calculates Cartesian from polar coordinates
+//|V1|             | cos(elevation)*cos(azimuth)|
+//|V2| = magnitude*|cos(elevation)*sin(azimuth) |
+//|V3|		       |	  -sin(elevation)       |
+void Matrix::polar2cartesian(double mag, double az, double elev)
+{
+	resize(3, 1);
+	setMat(0);
+	setElem(0, 0, abs(mag) * (cos(elev) * cos(az)));
+	setElem(1, 0, abs(mag) * (cos(elev) * sin(az)));
+	setElem(2, 0, abs(mag) * (sin(elev) * (-1.0)));
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//Returns polar from cartesian coordinates
+// magnitude = POLAR(0,0) = |V|
+// azimuth   = POLAR(1,0) = atan2(V2,V1)
+// elevation = POLAR(2,0) = atan2(-V3,sqrt(V1^2+V2^2)
+Matrix& Matrix::cartesian2polar(void)
+{
+	double d = 0.0; // magnitude
+	double azimuth = 0.0;
+	double elevation = 0.0;
+	double denom = 0;
+
+	int max_size = num_row > num_col ? num_row : num_col;
+	Matrix* POLAR = new Matrix(max_size, 1);
+
+	double v1 = getElem(0, 0);
+	double v2 = getElem(1, 0);
+	double v3 = getElem(2, 0);
+
+	for (int i = 0; i < num_row; i++)
+		d += pd[i][0] * pd[i][0];
+	d = sqrt(d);
+
+	azimuth = atan2(v2, v1);
+
+	denom = sqrt(v1 * v1 + v2 * v2);
+	if (denom > 0.)
+		elevation = atan2(-v3, denom);
+	else
+	{
+		if (v3 > 0) elevation = -M_PI / 2.;
+		if (v3 < 0) elevation = M_PI / 2.;
+		if (v3 == 0) elevation = 0.;
+	}
+
+	POLAR->setMat(0);
+
+	POLAR->pd[0][0] = d;
+	POLAR->pd[1][0] = azimuth;
+	POLAR->pd[2][0] = elevation;
+
+	POLAR->MatTemp = 1;
+
+	return *POLAR;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
