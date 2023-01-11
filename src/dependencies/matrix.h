@@ -21,13 +21,14 @@ private:
 	bool CheckVectors(const Matrix& V1,const  Matrix& V2, int* length, bool* rowsDim);// returns true if the 2 vectors are identical (dimensions) 
 	void CheckDimensions(int r, int c);
 
-	int num_row = MATDIM; 
-	int num_col = MATDIM; 
-	int MatrixSize = num_row * num_col;
+	
 
 public:
 
 	double** pd=NULL;  //  data
+	int num_row = MATDIM;
+	int num_col = MATDIM;
+	int MatrixSize = num_row * num_col;
 	
 	Matrix();
 	Matrix(const double &value);
@@ -58,10 +59,10 @@ public:
 	const int getIndex(int r, int c) const;
 
 	//Returns vec 3x1 of Matrix col c
-	void getCol(Matrix& out, int c) const;
+	void getColVec(Matrix& out, int c) const;
 
 	//Returns vec 3x1 of from MAtrix row r
-	void getRow(Matrix& out, int r) const;
+	void getRowVec(Matrix& out, int r) const;
 
 	// Returns the size of the matrix
 	const int size(void) ;

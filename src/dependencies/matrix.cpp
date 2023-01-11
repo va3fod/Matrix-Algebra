@@ -164,7 +164,7 @@ bool Matrix::CheckVectors(const Matrix& V1, const  Matrix& V2, int* length, bool
 		return false;
 	}
 }
-///////////////////////////////////////////////////////////////////////////////
+
 //Absolute value of vector
 const double Matrix::mag(void) 
 {
@@ -191,7 +191,6 @@ const double Matrix::mag(void)
 	return d;
 }
 
-///////////////////////////////////////////////////////////////////////////////
 //Adjoint matrix (same as det procedure however the matrix element is not multiplied into each cofactor)
 void Matrix::adjoint(Matrix &out)
 {	
@@ -253,7 +252,7 @@ void Matrix::setMat(const double &val)
 
 ///////////////////////////////////////////////////////////////////////////////
 //Returns column vector of col c
-void Matrix::getCol(Matrix &out, int c) const
+void Matrix::getColVec(Matrix &out, int c) const
 {
 	out.resize(num_row, 1);
 
@@ -265,7 +264,7 @@ void Matrix::getCol(Matrix &out, int c) const
 
 ///////////////////////////////////////////////////////////////////////////////
 //Returns vector of row r
-void Matrix::getRow(Matrix &out,int r) const
+void Matrix::getRowVec(Matrix &out,int r) const
 {
 	out.resize(1, num_col);
 
@@ -508,7 +507,7 @@ int Matrix::rank(void)
 					
 						pivot_found = true;
 						Matrix row;
-						Aech.getRow(row, r_pivot);
+						Aech.getRowVec(row, r_pivot);
 					//	row.print("row to be swapped");
 						for (int temp = 0; temp < num_col; temp++)
 						{
@@ -1017,22 +1016,36 @@ bool Matrix::operator==(Matrix &b)
 	return true;
 }
 
-///////////////////////////////////////////////////////////////////////////////
 //Example: value = v1 ^ v2   = v1x*v2x+v1y*v2y+v1z*v2z * ...
-// Dot product of 2 vectors, of the same dimensions
-double Matrix::operator^(Matrix &b)
+// Dot product of 2 vectors, of the same dimensions (1xn dot 1xn or nx1 dot nx1 or nx1 dot 1xn or 1xn dot nx1)
+double Matrix::operator^(Matrix& b)
 {
-	double temp=0.0;
+	double temp = 0.0;
 	int dim = 0;
 	bool rowsDim = 1; // 1 means the rows are > cols
+	
+	bool v1row = false;
+	bool v2row = false;
 
-	//check dimensions
-	if (CheckVectors(*this,b,&dim, &rowsDim))
+	if (num_col == 1)
 	{
-		for (int i = 0; i < dim; i++)
+		v1row = true;
+	}
+	
+	if (b.num_col == 1)
+	{
+		v2row = true;
+	}
+
+	if ((num_row == 1 || num_col==1) && (b.num_row == 1 || b.num_col==1))
+	{
+		for (int i = 0; i < MatrixSize; i++)
 		{
-				temp += pd[rowsDim?i:0][rowsDim ? 0 : i] * b.pd[rowsDim ? i : 0][rowsDim ? 0 : i];
+			temp += pd[v1row ? i : 0][v1row ? 0 : i] * b.pd[v2row ? i : 0][v2row ? 0 : i];
 		}
+		
+		// print dot product
+		cout << "Dot product: " << temp << endl;
 	}
 	else
 	{
@@ -1042,7 +1055,6 @@ double Matrix::operator^(Matrix &b)
 	return temp;
 }
 
-///////////////////////////////////////////////////////////////////////////////
 //Transpose Aij=>Aji
 Matrix& Matrix::operator~()
 {
@@ -1069,7 +1081,6 @@ double* Matrix::operator[](int i)
 	return nullptr;
 }
 
-///////////////////////////////////////////////////////////////////////////////
 //Returns the skew-symmetric matrix from a 3-dim vector
 //			| 0 -c  b|		|a|
 //			| c  0 -a| <--	|b|
