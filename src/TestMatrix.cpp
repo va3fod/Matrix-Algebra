@@ -69,8 +69,12 @@ int main()
 	ang = angle(v1, v2);
 	
 	
+	Matrix AA;
+	Matrix bb(3, 1, 0);
+	Matrix brez;
+	Matrix BB;
+	Matrix xx;
 
-/*
 	AA[0][0] = 4;
 	AA[0][1] = 1;
 	AA[0][2] = 1;
@@ -102,7 +106,7 @@ int main()
 
     // print the inverse of AA
 	AA.inv().print("inverse of AA");
-	*/
+	
 
     std::cin.get();
 }

@@ -15,13 +15,11 @@ private:
 	const double EPS_MATRIX = 1.e-7;
 	
 	int MatTemp = 0; // for memory management
-	void AllocateMemory(int row, int col);
+	void AllocateMemory(const int row,const int col);
 	void deAllocateMemory(void);
 	bool CheckVectors(Matrix& V1, Matrix& V2, int* length, bool *rowsDim);// returns true if the 2 vectors are identical (dimensions) 
 	bool CheckVectors(const Matrix& V1,const  Matrix& V2, int* length, bool* rowsDim);// returns true if the 2 vectors are identical (dimensions) 
 	void CheckDimensions(int r, int c);
-
-	
 
 public:
 
@@ -32,7 +30,7 @@ public:
 	
 	Matrix();
 	Matrix(const double &value);
-	Matrix(int r, int c);
+	Matrix(const int r, const int c);
 	Matrix(int r, int c,const double &value);
 	Matrix(double* pMat, int row, int col);
 	Matrix(Matrix &other);  // copy constructor

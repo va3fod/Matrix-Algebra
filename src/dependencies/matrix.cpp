@@ -96,7 +96,7 @@ void Matrix::deAllocateMemory(void)
 	num_col = -1;
 }
 
-void Matrix::AllocateMemory(int row, int col)
+void Matrix::AllocateMemory(const int row, const int col)
 {
 	pd = NULL;
 	size();
