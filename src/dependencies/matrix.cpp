@@ -671,6 +671,21 @@ Matrix& operator*(const double& a, Matrix& b)
 	return *pMatTmp;
 }
 
+Matrix& Matrix::operator-(void)
+{
+	Matrix* pMatTmp = new Matrix(num_row, num_col);
+
+	for (int i = 0; i < num_row; i++)
+		for (int j = 0; j < num_col; j++)
+		{
+			pMatTmp->pd[i][j] = -pd[i][j];
+		}
+
+	pMatTmp->MatTemp = 1;
+
+	return *pMatTmp;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 //Multiplication operator
 Matrix& Matrix::operator*(Matrix& b)
@@ -718,6 +733,32 @@ Matrix& Matrix::operator*(Matrix& b)
 	
 	return *pMatTmp;
 }
+
+// define the "/" operator for a matrix division by a scalar
+Matrix& Matrix::operator/(const double& a)
+{
+	Matrix* pMatTmp = new Matrix(num_row, num_col);
+
+	for (int i = 0; i < num_row; i++)
+		for (int j = 0; j < num_col; j++)
+		{
+			// add here a protection for division by zero (a==0)
+			if (abs(a) < EPS_MATRIX)
+			{
+				cout << "division by zero" << endl;
+				return *this;
+			}
+			else pMatTmp->pd[i][j] = pd[i][j] / a;
+			
+		}
+
+	pMatTmp->MatTemp = 1;
+
+	return *pMatTmp;
+}
+
+
+
 ///////////////////////////////////////////////////////////////////////////////
 //Scalar multiplication assignment operator (scalar element by element multiplication)
 void Matrix::operator*=(double b)

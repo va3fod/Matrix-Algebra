@@ -133,6 +133,12 @@ public:
 	// define the multiplication operator for a "double * Matrix" expression
 	friend Matrix& operator*(const double& a, Matrix& b);
 
+	// define the subtraction operator for a "-Matrix" expression
+	Matrix& operator-(void);
+	
+	// define the "/" operator for a matrix division by a scalar
+	Matrix& operator/(const double& a);
+
 	//Scalar multiplication assignment operator (scalar element by element multiplication)
 	void operator*=(double b);
 
