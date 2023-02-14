@@ -11,8 +11,8 @@ class Matrix
 {
 private:
 	
-	const int  MATDIM = 3; // default
-	const double EPS_MATRIX = 1.e-7;
+	static const int  MATDIM = 3; // default
+	static constexpr double EPS_MATRIX = 1.e-7;
 	
 	int MatTemp = 0; // for memory management
 	void AllocateMemory(const int row,const int col);
