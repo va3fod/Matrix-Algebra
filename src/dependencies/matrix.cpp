@@ -262,6 +262,21 @@ void Matrix::getColVec(Matrix &out, int c) const
 	}
 }
 
+Matrix& Matrix::getColVec(int c) const
+{
+	Matrix* pMatTmp = new Matrix(num_row,1);
+	//out.resize(num_row, 1);
+
+	for (int i = 0; i < num_row; i++)
+	{
+		pMatTmp->pd[i][0] = pd[i][c];
+	}
+
+	pMatTmp->MatTemp = 1;
+
+	return *pMatTmp;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 //Returns vector of row r
 void Matrix::getRowVec(Matrix &out,int r) const

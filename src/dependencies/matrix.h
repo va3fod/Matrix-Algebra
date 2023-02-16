@@ -58,6 +58,7 @@ public:
 
 	//Returns vec 3x1 of Matrix col c
 	void getColVec(Matrix& out, int c) const;
+	Matrix& getColVec(int c) const;
 
 	//Returns vec 3x1 of from MAtrix row r
 	void getRowVec(Matrix& out, int r) const;
