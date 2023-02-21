@@ -37,7 +37,14 @@ int main()
 	xx = AA.inv() * bb;
 	xx.print("xx = A.inv() * b");
 
-    
+    // print AA
+	AA.print("AA");
+
+	Matrix subAA;
+	subAA = AA.getMatrix(0, 1, 2,2);
+	subAA.print("subAA");
+
+
 
     std::cin.get();
 }

@@ -772,8 +772,6 @@ Matrix& Matrix::operator/(const double& a)
 	return *pMatTmp;
 }
 
-
-
 ///////////////////////////////////////////////////////////////////////////////
 //Scalar multiplication assignment operator (scalar element by element multiplication)
 void Matrix::operator*=(double b)
@@ -1213,6 +1211,31 @@ Matrix& Matrix::sub_matrix(int r, int c)
 		}
 	}
 	
+	pMatTmp->MatTemp = 1;
+	return *pMatTmp;
+}
+Matrix& Matrix::getMatrix(int rowStart, int colStart, int rowEnd, int colEnd)
+{
+	// extract and return a submatrix from the original Matrix, with elements between start row and start column and ending to the end row and end column.
+	// add protection to this code to make sure we are not accessing index out of bounds for "pd"
+	if (rowStart < 0 || rowStart >= num_row || rowEnd < 0 || rowEnd >= num_row || colStart < 0 || colStart >= num_col || colEnd < 0 || colEnd >= num_col)
+	{
+		cout << "Invalid Matrix dimension" << endl;
+		return *this;
+	}
+	
+	Matrix* pMatTmp = new Matrix(rowEnd - rowStart + 1, colEnd - colStart + 1,0);
+	for (int i = rowStart; i <= rowEnd; i++)
+	{
+		for (int j = colStart; j <= colEnd; j++)
+		{
+			pMatTmp->pd[i - rowStart][j - colStart] = pd[i][j];
+		}
+	}
+	
+
+
+
 	pMatTmp->MatTemp = 1;
 	return *pMatTmp;
 }
