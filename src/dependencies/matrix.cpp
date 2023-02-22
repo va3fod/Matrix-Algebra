@@ -615,8 +615,8 @@ Matrix& Matrix::cartesian2polar(void)
 		elevation = atan2(-v3, denom);
 	else
 	{
-		if (v3 > 0) elevation = -M_PI / 2.;
-		if (v3 < 0) elevation = M_PI / 2.;
+		if (v3 > 0) elevation = -pi / 2.0;
+		if (v3 < 0) elevation = pi / 2.0;
 		if (v3 == 0) elevation = 0.;
 	}
 
