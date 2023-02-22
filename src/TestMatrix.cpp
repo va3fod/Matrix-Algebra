@@ -44,7 +44,8 @@ int main()
 	subAA = AA.getMatrix(0, 1, 2,2);
 	subAA.print("subAA");
 
-
+	subAA = AA(0, 1, 2, 2);
+	subAA.print("subAA");
 
     std::cin.get();
 }

@@ -195,4 +195,7 @@ public:
 	// define operator to access Matrix elements as object[i][j] 
 	double* operator[](int i);
 
+	// define an operator to get a submatrix from a matrix like subAA = AA[0,1][2, 2];
+	Matrix& operator()(int rowStart, int colStart, int rowEnd, int colEnd);
+
 };

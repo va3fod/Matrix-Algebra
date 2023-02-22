@@ -350,7 +350,6 @@ const int Matrix::getIndex(int r, int c) const
 		return -1;
 	}
 }
-
 ///////////////////////////////////////////////////////////////////////////////
 //Returns the value at row r col c of Matrix
 const double Matrix::getElem(int r, int c) const
@@ -1135,6 +1134,27 @@ double* Matrix::operator[](int i)
 	return nullptr;
 }
 
+Matrix& Matrix::operator()(int rowStart, int colStart, int rowEnd, int colEnd)
+{
+	if (rowStart < 0 || rowStart >= num_row || rowEnd < 0 || rowEnd >= num_row || colStart < 0 || colStart >= num_col || colEnd < 0 || colEnd >= num_col)
+	{
+		cout << "Invalid Matrix dimension" << endl;
+		return *this;
+	}
+
+	Matrix* pMatTmp = new Matrix(rowEnd - rowStart + 1, colEnd - colStart + 1, 0);
+	for (int i = rowStart; i <= rowEnd; i++)
+	{
+		for (int j = colStart; j <= colEnd; j++)
+		{
+			pMatTmp->pd[i - rowStart][j - colStart] = pd[i][j];
+		}
+	}
+
+	pMatTmp->MatTemp = 1;
+	return *pMatTmp;
+}
+
 //Returns the skew-symmetric matrix from a 3-dim vector
 //			| 0 -c  b|		|a|
 //			| c  0 -a| <--	|b|
@@ -1233,9 +1253,6 @@ Matrix& Matrix::getMatrix(int rowStart, int colStart, int rowEnd, int colEnd)
 		}
 	}
 	
-
-
-
 	pMatTmp->MatTemp = 1;
 	return *pMatTmp;
 }
