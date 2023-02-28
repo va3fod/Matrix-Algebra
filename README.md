@@ -1,7 +1,7 @@
-# Matrix Algebra
+# Matrix Library in c++
 Linear Matrix Algebra
 A simple class to handle the common matrix algebra plus some utility functions.
-The idea is of easy to use.
+The focus is on easy to use.
 
 int main()
 {
