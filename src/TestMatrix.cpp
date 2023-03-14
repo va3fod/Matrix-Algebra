@@ -5,7 +5,7 @@
 int main()
 {
 	Matrix AA;
-	Matrix bb(3, 1, 0);
+	Matrix bb(3, 1, 7);
 	Matrix brez;
 	Matrix xx;
 
@@ -46,6 +46,8 @@ int main()
 
 	subAA = AA(0, 1, 2, 2);
 	subAA.print("subAA");
+
+
 
     std::cin.get();
 }
