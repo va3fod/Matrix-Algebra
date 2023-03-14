@@ -111,30 +111,8 @@ void Matrix::AllocateMemory(const int row, const int col)
 			pd[ii][jj] = 0; // default data to zeros;
 		}
 	}
-
-	// copy the data from "pd" to datavec
-	copyData();
 }
 
-// create a class methods to copy the data from "pd" to "data"
-void Matrix::copyData(void)
-{
-	// size "data" vector to match the structure of rows and columns of "pd"
-	data.resize(num_row);
-	for (int i = 0; i < num_row; i++)
-	{
-		data[i].resize(num_col);
-	}
-
-	// copy the data from "pd" to datavec
-	for (int i = 0; i < num_row; i++)
-	{
-		for (int j = 0; j < num_col; j++)
-		{
-			data[i][j] = pd[i][j];
-		}
-	}
-}
 
 void Matrix::resize(int r, int c)
 {
@@ -271,8 +249,6 @@ void Matrix::setMat(const double &val)
 		{
 			pd[i][j] = val;
 		}
-
-	copyData();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -408,7 +384,7 @@ void Matrix::identity(void)
 ///////////////////////////////////////////////////////////////////////////////
 //Returns the inverse of a square matrix A
 //Inv  A^-1 = (1/det(A)) * adj(A)
-void Matrix::inverse(Matrix &out)
+void Matrix::inv(Matrix &out)
 {
 	double d=0;
 	
@@ -1031,8 +1007,6 @@ void Matrix::operator=(Matrix &b)
 			}
 		}
 
-		copyData();
-
 		if (b.MatTemp)
 		{
 			if (b.pd)
@@ -1048,8 +1022,6 @@ void Matrix::operator=(double b)
 	resize(1, 1);
 
 	pd[0][0] = b;
-	copyData();
-		
 }
 
 void Matrix::operator=(const Matrix& b)
@@ -1065,7 +1037,6 @@ void Matrix::operator=(const Matrix& b)
 				pd[ii][jj] = b.pd[ii][jj];
 			}
 		}
-		copyData();
 
 		if (b.MatTemp)
 		{

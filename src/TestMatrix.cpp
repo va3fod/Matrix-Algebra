@@ -4,7 +4,7 @@
 
 int main()
 {
-	Matrix AA;
+	Matrix AA,ainv;
 	Matrix bb(3, 1, 7);
 	Matrix brez;
 	Matrix xx;
@@ -36,6 +36,8 @@ int main()
 	// Ax=b;
 	xx = AA.inv() * bb;
 	xx.print("xx = A.inv() * b");
+	AA.inv(ainv);
+	ainv = AA.inv();
 
     // print AA
 	AA.print("AA");

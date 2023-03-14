@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <cmath>
-#include <vector>
 
 using std::cout;
 using std::endl;
@@ -25,7 +24,8 @@ private:
 public:
 
 	double** pd=NULL;  //  data
-	std::vector<std::vector<double>> data; // mirror copy for easier access for debugging.
+	//std::vector<std::vector<double>> data; // mirror copy for easier access for debugging.
+
 	int num_row = MATDIM;
 	int num_col = MATDIM;
 	int MatrixSize = num_row * num_col;
@@ -42,9 +42,6 @@ public:
 
 	// Matrix resize
 	void resize(int r, int c);
-
-	// copy data from "pd" to "data"
-	void copyData(void);
 
 	//Returns magnitude value of a vector
 	const double mag(void);
@@ -126,7 +123,7 @@ public:
 	void identity(void);
 
 	//Returns the inverse of a square matrix AMAT
-	void inverse(Matrix& out);
+	void inv(Matrix& out);
 	Matrix & inv(void);
 
 	//Inequality relational operator, returns true or false
