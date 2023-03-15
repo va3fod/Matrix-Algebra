@@ -64,6 +64,8 @@ public:
 
 	//Returns vec 3x1 of from MAtrix row r
 	void getRowVec(Matrix& out, int r) const;
+	Matrix& getRowVec(int r) const;
+	
 
 	// Returns the size of the matrix
 	const int size(void) ;

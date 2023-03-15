@@ -266,7 +266,6 @@ void Matrix::getColVec(Matrix &out, int c) const
 Matrix& Matrix::getColVec(int c) const
 {
 	Matrix* pMatTmp = new Matrix(num_row,1);
-	//out.resize(num_row, 1);
 
 	for (int i = 0; i < num_row; i++)
 	{
@@ -288,6 +287,19 @@ void Matrix::getRowVec(Matrix &out,int r) const
 	{
 		out.pd[0][i] = pd[r][i];
 	}
+}
+Matrix& Matrix::getRowVec(int r) const
+{
+	Matrix* pMatTmp = new Matrix(1,num_col);
+
+	for (int i = 0; i < num_col; i++)
+	{
+		pMatTmp->pd[0][i] = pd[r][i];
+	}
+
+	pMatTmp->MatTemp = 1;
+
+	return *pMatTmp;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -6,6 +6,7 @@ int main()
 {
 	Matrix AA,ainv;
 	Matrix bb(3, 1, 7);
+	Matrix aa(1, 3, 0);
 	Matrix brez;
 	Matrix xx;
 
@@ -22,6 +23,9 @@ int main()
     AA[2][2] = 3;
 
 	bb = AA.getColVec(1);
+	aa = AA.getRowVec(1);
+	//print aa
+	aa.print("aa");
 	
 	bb[0][0] = 2;
 	bb[1][0] = 1;
