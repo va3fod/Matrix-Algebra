@@ -15,7 +15,7 @@ Matrix::Matrix(const double &value)
 
 	setMat(value);
 }
-Matrix::Matrix(int r, int c)
+Matrix::Matrix(const int r, const int c)
 {
 	CheckDimensions(r, c);
 
@@ -23,7 +23,7 @@ Matrix::Matrix(int r, int c)
 	AllocateMemory(num_row, num_col);
 }
 
-Matrix::Matrix(int r, int c, const double &value)
+Matrix::Matrix(const int r, const int c, const double &value)
 {
 	CheckDimensions(r, c);
 
@@ -33,7 +33,7 @@ Matrix::Matrix(int r, int c, const double &value)
 	setMat(value);
 }
 
-Matrix::Matrix(double* pMat, int row,int col):num_row(row), num_col(col)
+Matrix::Matrix(double* pMat, const int row, const int col):num_row(row), num_col(col)
 {
 	AllocateMemory(num_row, num_col);
 
@@ -60,7 +60,7 @@ Matrix::Matrix(const Matrix& other) // that is the default copy constructor
 	//cout << "default copy constructor called" << endl;
 }
 
-void Matrix::CheckDimensions(int r, int c)
+void Matrix::CheckDimensions(const int r,const int c)
 {
 	if (r > 0)
 		num_row = r;

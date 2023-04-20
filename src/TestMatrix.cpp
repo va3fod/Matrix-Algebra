@@ -10,6 +10,8 @@ int main()
 	Matrix brez;
 	Matrix xx;
 
+	Matrix AB(AA);
+
 	AA[0][0] = 4;
 	AA[0][1] = 1;
 	AA[0][2] = 1;

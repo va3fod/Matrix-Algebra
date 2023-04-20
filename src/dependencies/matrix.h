@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <cmath>
+#include <vector>
 
 using std::cout;
 using std::endl;
@@ -19,12 +20,12 @@ private:
 	void deAllocateMemory(void);
 	bool CheckVectors(Matrix& V1, Matrix& V2, int* length, bool *rowsDim);// returns true if the 2 vectors are identical (dimensions) 
 	bool CheckVectors(const Matrix& V1,const  Matrix& V2, int* length, bool* rowsDim);// returns true if the 2 vectors are identical (dimensions) 
-	void CheckDimensions(int r, int c);
+	void CheckDimensions(const int r, const int c);
 
 public:
 
 	double** pd=NULL;  //  data
-	//std::vector<std::vector<double>> data; // mirror copy for easier access for debugging.
+	std::vector<std::vector<double>> data; // mirror copy for easier access for debugging.
 
 	int num_row = MATDIM;
 	int num_col = MATDIM;
@@ -33,8 +34,8 @@ public:
 	Matrix();
 	Matrix(const double &value);
 	Matrix(const int r, const int c);
-	Matrix(int r, int c,const double &value);
-	Matrix(double* pMat, int row, int col);
+	Matrix(const int r, const int c,const double &value);
+	Matrix(double* pMat, const int row, const int col);
 	Matrix(Matrix &other);  // copy constructor
 	Matrix(const Matrix& other);// copy constructor
 	
