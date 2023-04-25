@@ -5,6 +5,7 @@
 
 using std::cout;
 using std::endl;
+using std::max;
 
 // Matrix class --->>> VA3FOD
 class Matrix
@@ -59,15 +60,14 @@ public:
 	//Returns sequential index, counting elements row wise, of Matrix -->> a11, a12, a13, a21, etc
 	const int getIndex(int r, int c) const;
 
-	//Returns vec 3x1 of Matrix col c
+	//Returns vec nx1 of Matrix col c
 	void getColVec(Matrix& out, int c) const;
 	Matrix& getColVec(int c) const;
 
-	//Returns vec 3x1 of from MAtrix row r
+	//Returns vec nx1 of from Matrix row r
 	void getRowVec(Matrix& out, int r) const;
 	Matrix& getRowVec(int r) const;
 	
-
 	// Returns the size of the matrix
 	const int size(void) ;
 
@@ -110,8 +110,9 @@ public:
 
 	Matrix& getMatrix(int rowStart, int colStart, int rowEnd, int colEnd);
 
-	//Returns unit vector from 3x1 vector
-	void unitvec3(Matrix& out);
+	//Returns unit vector from nx1 vector
+	void unitvec(Matrix& out);
+	Matrix& unitvec(void);
 
 	// Calculate the trace of a square matrix
 	double trace(void);

@@ -1,6 +1,7 @@
 #pragma once
 #include "matrix.h"
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // Matrix constructors
 Matrix::Matrix():num_row(MATDIM),num_col(MATDIM)
@@ -1269,26 +1270,99 @@ Matrix& Matrix::getMatrix(int rowStart, int colStart, int rowEnd, int colEnd)
 	return *pMatTmp;
 }
 /////////////////////////////////////////////////////////////////////////////
-//Builds unit vector from 3x1 vector
-void Matrix::unitvec3(Matrix &out)
+//Builds unit vector from nx1 vector
+void Matrix::unitvec(Matrix &out)
 {
+	// calculate the magnitude of the vector
 	double magnitude = mag();
+
+	// resize the "out" vector to the same size as the source vector
+	out.resize(num_row, num_col);
 	
+	// calculate if the source vector is a row or a column vector
+	if (num_col>1 && num_row>1)
+	{
+		cout << "Invalid Matrix dimension to calculate the unit vector" << endl;
+		return;
+	}
+
+	// if the magnitude is greater than EPS_MATRIX, then we can calculate the unit vector
 	if (magnitude > EPS_MATRIX)
 	{
-		double first = pd[0][0];
-		double second = pd[1][0];
-		double third = pd[2][0];
-
-		out.pd[0][0] = first / mag();
-		out.pd[1][0] = second / mag();
-		out.pd[2][0] = third / mag();
+		// calculate the unit vector for n-th dimensions using a for loop
+		for (int i = 0; i < max(num_row,num_col); i++)
+		{
+			// use inline if ? to access the correct "pd" element of the vector, depending on whether it is a row or a column vector
+			
+			out.pd[num_row > 1 ? i : 0][num_col > 1 ? i : 0] = pd[num_row>1? i:0][num_col > 1 ? i : 0] / magnitude;
+		}
 	}
 	else
 	{
 		cout << "zero vector" << endl;
 	}
 }
+//Builds unit vector from nx1 vector
+Matrix & Matrix::unitvec(void)
+{
+	// calculate the magnitude of the vector
+	double magnitude = mag();
+
+	// resize the output vector to the same size as the source vector
+	Matrix* pMatTmp = new Matrix(num_row, num_col);
+
+	// calculate if the source vector is a row or a column vector
+	if (num_col > 1 && num_row > 1)
+	{
+		cout << "Invalid Matrix dimension to calculate the unit vector" << endl;
+		
+	}
+	else if(magnitude > EPS_MATRIX)
+	{
+		// if the magnitude is greater than EPS_MATRIX, then we can calculate the unit vector
+		// calculate the unit vector for n-th dimensions using a for loop
+		for (int i = 0; i < max(num_row, num_col); i++)
+		{
+			// use inline if ? to access the correct "pd" element of the vector, depending on whether it is a row or a column vector
+
+			pMatTmp->pd[num_row > 1 ? i : 0][num_col > 1 ? i : 0] = pd[num_row > 1 ? i : 0][num_col > 1 ? i : 0] / magnitude;
+		}
+	}
+	else
+	{
+		cout << "zero vector" << endl;
+	}
+
+	pMatTmp->MatTemp = 1;
+
+	return *pMatTmp;
+}
+
+/*
+void Matrix::getRowVec(Matrix& out, int r) const
+{
+	out.resize(1, num_col);
+
+	for (int i = 0; i < num_col; i++)
+	{
+		out.pd[0][i] = pd[r][i];
+	}
+}
+Matrix& Matrix::getRowVec(int r) const
+{
+	Matrix* pMatTmp = new Matrix(1, num_col);
+
+	for (int i = 0; i < num_col; i++)
+	{
+		pMatTmp->pd[0][i] = pd[r][i];
+	}
+
+	pMatTmp->MatTemp = 1;
+
+	return *pMatTmp;
+}*/
+
+
 
 const int Matrix::size(void) 
 {

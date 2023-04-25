@@ -55,6 +55,42 @@ int main()
 	subAA = AA(0, 1, 2, 2);
 	subAA.print("subAA");
 
+	// declare a column vector of 4 elements and initialize it to 1
+	Matrix cc(4, 1, 1);
+	// populate "cc" with the random values between 0 and 10
+	cc[0][0] = 3;
+	cc[1][0] = 1;
+	cc[2][0] = 2;
+	cc[3][0] = 4;
+	// print "cc"
+	cc.print("cc");
+
+	// calculate the unitvector of "cc"
+	Matrix ee;
+	//cc.unitvec(ee);
+	ee = cc.unitvec();
+	// print "ee"
+	ee.print("unit vec for ""cc"" is = ");
+
+
+	// declare a row vector of 4 elements and initialize it to 1
+	Matrix dd(1, 4, 1);
+	// populate "cc" with the random values between 0 and 10
+	dd[0][0] = 3;
+	dd[0][1] = 1;
+	dd[0][2] = 2;
+	dd[0][3] = 4;
+	// print "dd"
+	dd.print("dd");
+
+	// calculate the unitvector of "dd"
+	Matrix ff;
+	//dd.unitvec(ff);
+	ff = dd.unitvec();
+	// print "ff"
+	ff.print("unit vec for ""dd"" is = ");
+
+
 
 
     std::cin.get();
