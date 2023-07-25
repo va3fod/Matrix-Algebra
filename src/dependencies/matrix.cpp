@@ -204,11 +204,11 @@ void Matrix::adjoint(Matrix &out)
 		{
 			if (((i + j) % 2) != 0)
 			{
-				out.pd[i][j] = (-1.0) * sub_matrix(i, j).det();
+				out.pd[i][j] = (-1.0) * subMatrix(i, j).det();
 			}
 			else
 			{
-				out.pd[i][j] = sub_matrix(i, j).det();
+				out.pd[i][j] = subMatrix(i, j).det();
 			}
 		}
 	}
@@ -480,12 +480,12 @@ double Matrix::det(void)
 			if (((i + j) % 2) != 0)
 			{
 				//(-1)^(i+j)=>i+j is odd
-				result += (-1.0) * sub_matrix(i, j).det() * pd[i][j];
+				result += (-1.0) * subMatrix(i, j).det() * pd[i][j];
 			}
 			else
 			{
 				//(-1)^(i+j)=>i+j is even
-				result += sub_matrix(i, j).det() * pd[i][j];
+				result += subMatrix(i, j).det() * pd[i][j];
 			}
 		}
 	}
@@ -1199,7 +1199,7 @@ Matrix& Matrix::skew_sym(void)
 
 /////////////////////////////////////////////////////////////////////////////
 //Returns the sub matrix after row r and col c have been ommitted
-Matrix& Matrix::sub_matrix(int r, int c)
+Matrix& Matrix::subMatrix(int r, int c)
 { 
 	Matrix* pMatTmp = new Matrix(num_row - 1, num_col - 1);
 
@@ -1337,32 +1337,6 @@ Matrix & Matrix::unitvec(void)
 
 	return *pMatTmp;
 }
-
-/*
-void Matrix::getRowVec(Matrix& out, int r) const
-{
-	out.resize(1, num_col);
-
-	for (int i = 0; i < num_col; i++)
-	{
-		out.pd[0][i] = pd[r][i];
-	}
-}
-Matrix& Matrix::getRowVec(int r) const
-{
-	Matrix* pMatTmp = new Matrix(1, num_col);
-
-	for (int i = 0; i < num_col; i++)
-	{
-		pMatTmp->pd[0][i] = pd[r][i];
-	}
-
-	pMatTmp->MatTemp = 1;
-
-	return *pMatTmp;
-}*/
-
-
 
 const int Matrix::size(void) 
 {

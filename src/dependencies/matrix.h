@@ -106,7 +106,7 @@ public:
 	Matrix& skew_sym(void);
 
 	//Returns the sub matrix after row r and col c have been ommitted	
-	Matrix& sub_matrix(int r, int c);
+	Matrix& subMatrix(int r, int c);
 
 	Matrix& getMatrix(int rowStart, int colStart, int rowEnd, int colEnd);
 
