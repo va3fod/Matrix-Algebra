@@ -26,7 +26,12 @@ private:
 public:
 
 	double** pd=NULL;  //  data
-	std::vector<std::vector<double>> data; // mirror copy for easier access for debugging.
+	
+	// declare a vector type to copy the data from "pd" to it
+	std::vector<double> data;
+	
+	// mirror copy the data from pd double pointer to the data vector for easier access for debugging.
+	void mirrorData(void);
 
 	int num_row = MATDIM;
 	int num_col = MATDIM;

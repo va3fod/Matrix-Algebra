@@ -90,7 +90,8 @@ int main()
 	// print "ff"
 	ff.print("unit vec for ""dd"" is = ");
 
-
+	double testvar = 0;
+	testvar = dd[0][1];
 
 
     std::cin.get();

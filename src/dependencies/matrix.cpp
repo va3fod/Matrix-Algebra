@@ -74,6 +74,18 @@ void Matrix::CheckDimensions(const int r,const int c)
 		num_col = MATDIM;
 }
 
+void Matrix::mirrorData(void)
+{
+	// copy pd to data vector
+	for (int ii = 0; ii < num_row; ii++)
+	{
+		for (int jj = 0; jj < num_col; jj++)
+		{
+			data[jj + ii * num_col] = pd[ii][jj];
+		}
+	}
+}
+
 //Default destructor
 Matrix::~Matrix()
 {
@@ -113,7 +125,6 @@ void Matrix::AllocateMemory(const int row, const int col)
 		}
 	}
 }
-
 
 void Matrix::resize(int r, int c)
 {
@@ -418,7 +429,6 @@ void Matrix::inv(Matrix &out)
 		{
 			cout << "Determinant is zero, inverse does not exist" << endl;
 		}
-		
 	}
 }
 //Returns the inverse of a square matrix A
