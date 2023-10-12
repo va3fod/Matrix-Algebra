@@ -1,7 +1,6 @@
 #pragma once
 #include "matrix.h"
 
-
 ///////////////////////////////////////////////////////////////////////////////
 // Matrix constructors
 Matrix::Matrix():num_row(MATDIM),num_col(MATDIM)
