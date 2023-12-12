@@ -41,7 +41,7 @@ public:
 	Matrix(const double &value);
 	Matrix(const int r, const int c);
 	Matrix(const int r, const int c,const double &value);
-	Matrix(double* pMat, const int row, const int col);
+	Matrix(const double* pMat, const int row, const int col);
 	Matrix(Matrix &other);  // copy constructor
 	Matrix(const Matrix& other);// copy constructor
 	
@@ -195,7 +195,7 @@ public:
 	void operator=(const Matrix& b);
 
 	//Equality relational operator, returns true or false
-	bool operator==(Matrix &b);
+	bool operator==(Matrix &b) const;
 
 	//Returns the scalar(dot) product of two vectors 
 	double operator^(Matrix &b);

@@ -33,7 +33,7 @@ Matrix::Matrix(const int r, const int c, const double &value)
 	setMat(value);
 }
 
-Matrix::Matrix(double* pMat, const int row, const int col):num_row(row), num_col(col)
+Matrix::Matrix(const double* pMat, const int row, const int col):num_row(row), num_col(col)
 {
 	AllocateMemory(num_row, num_col);
 
@@ -1071,7 +1071,7 @@ void Matrix::operator=(const Matrix& b)
 }
 ///////////////////////////////////////////////////////////////////////////////
 //Equality relational operator of 2 identical matrixes
-bool Matrix::operator==(Matrix &b)
+bool Matrix::operator==(Matrix &b) const
 {
 	//check dimensions
 	if ((num_col != b.num_col) || (num_row != b.num_row))
