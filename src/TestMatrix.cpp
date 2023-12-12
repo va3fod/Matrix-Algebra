@@ -94,6 +94,12 @@ int main()
 	testvar = dd[0][1];
 
 
+	Matrix zeroRowMatrix(0, 3);
+	Matrix zeroColMatrix(3, 0);
+	Matrix zeroMatrix(0, 0);
+
+
+
     std::cin.get();
 }
 
