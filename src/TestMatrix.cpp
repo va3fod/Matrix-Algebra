@@ -83,20 +83,16 @@ int main()
 	// print "dd"
 	dd.print("dd");
 
-	// calculate the unitvector of "dd"
+	// calculate the unitvector of "ff"
 	Matrix ff;
-	//dd.unitvec(ff);
 	ff = dd.unitvec();
 	// print "ff"
 	ff.print("unit vec for ""dd"" is = ");
 
-	double testvar = 0;
-	testvar = dd[0][1];
+	double dotprodvalue = 0;
+	dotprodvalue = cc ^ dd;
+	cout << "dot product of 4d vectors is = " << dotprodvalue << endl;
 
-
-	Matrix zeroRowMatrix(0, 3);
-	Matrix zeroColMatrix(3, 0);
-	Matrix zeroMatrix(0, 0);
 
 
 
