@@ -144,6 +144,9 @@ public:
 	//Multiplication operator, returns matrix product 
 	Matrix& operator*(Matrix& b);
 
+	// element multiplication assignment operator
+	Matrix & mul(const Matrix& other) ;
+
 	// define the multiplication operator for a "double * Matrix" expression
 	friend Matrix& operator*(const double& a, Matrix& b);
 

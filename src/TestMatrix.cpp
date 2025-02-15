@@ -123,6 +123,23 @@ int main()
 	Matrix ll = AA * AB;
 	ll.print("AA * AB");
 
+	// insert here the code to test the rest of the operators
+
+	// Test for element-wise multiplication operator
+	Matrix nn = cc.mul(gg);
+	nn.print("cc element-wise mul gg");
+
+	// Test for negation operator
+	Matrix pp = -cc;
+	pp.print("negation of cc");
+
+	// Test for equality operator
+	bool isEqual = (cc == gg);
+	cout << "cc == gg: " << isEqual << endl;
+
+	// Test for inequality operator
+	bool isNotEqual = (cc != gg);
+	cout << "cc != gg: " << isNotEqual << endl;
 
 	std::cin.get();
 }

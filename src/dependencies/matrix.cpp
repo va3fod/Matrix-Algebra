@@ -771,6 +771,23 @@ Matrix& Matrix::operator*(Matrix& b)
 	return *pMatTmp;
 }
 
+Matrix& Matrix::mul(const Matrix& other)  
+{
+	if (num_row != other.num_row || num_col != other.num_col) {
+		throw std::invalid_argument("Matrix dimensions must agree for element-wise multiplication.");
+	}
+	Matrix* pMatTmp = NULL;
+	pMatTmp = new Matrix(num_row,num_col);
+	pMatTmp->MatTemp = 1;
+	//Matrix result(num_row, num_col);
+	for (int i = 0; i < num_row; ++i) {
+		for (int j = 0; j < num_col; ++j) {
+			pMatTmp->pd[i][j] = pd[i][j] * other.pd[i][j];
+		}
+	}
+	return *pMatTmp;
+}
+
 // define the "/" operator for a matrix division by a scalar
 Matrix& Matrix::operator/(const double& a)
 {
