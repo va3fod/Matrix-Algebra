@@ -4,7 +4,7 @@
 
 int main()
 {
-	Matrix AA,ainv;
+	Matrix AA, ainv;
 	Matrix bb(3, 1, 7);
 	Matrix aa(1, 3, 0);
 	Matrix brez;
@@ -72,7 +72,6 @@ int main()
 	// print "ee"
 	ee.print("unit vec for ""cc"" is = ");
 
-
 	// declare a row vector of 4 elements and initialize it to 1
 	Matrix dd(1, 4, 1);
 	// populate "cc" with the random values between 0 and 10
@@ -93,9 +92,37 @@ int main()
 	dotprodvalue = cc ^ dd;
 	cout << "dot product of 4d vectors is = " << dotprodvalue << endl;
 
+	// add a test for the dot product of two vectors
+	Matrix gg(4, 1, 1);
+	gg[0][0] = 3;
+	gg[1][0] = 1;
+	gg[2][0] = 2;
+	gg[3][0] = 4;
+	// print "gg"
+	gg.print("gg");
+
+	// Additional unit tests for operators not used yet
+
+	// Test for addition operator
+	Matrix hh = cc + gg;
+	hh.print("cc + gg");
+
+	// Test for subtraction operator
+	Matrix ii = cc - gg;
+	ii.print("cc - gg");
+
+	// Test for scalar multiplication operator
+	Matrix jj = cc * 2;
+	jj.print("cc * 2");
+
+	// Test for scalar division operator
+	Matrix kk = cc / 2;
+	kk.print("cc / 2");
+
+	// Test for matrix multiplication operator
+	Matrix ll = AA * AB;
+	ll.print("AA * AB");
 
 
-
-    std::cin.get();
+	std::cin.get();
 }
-
