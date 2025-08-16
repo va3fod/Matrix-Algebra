@@ -75,15 +75,14 @@ void Matrix::CheckDimensions(const int r,const int c)
 
 void Matrix::mirrorData(void)
 {
-	// copy pd to data vector
-	for (int ii = 0; ii < num_row; ii++)
-	{
-		for (int jj = 0; jj < num_col; jj++)
-		{
-			data[jj + ii * num_col] = pd[ii][jj];
-		}
-	}
-}
+        data.clear();
+        if (!pd) return; // or throw an exception
+        for (int i = 0; i < num_row; ++i) {
+            for (int j = 0; j < num_col; ++j) {
+                data.push_back(pd[i][j]);
+            }
+        }
+  }
 
 //Default destructor
 Matrix::~Matrix()

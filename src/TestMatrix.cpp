@@ -141,5 +141,113 @@ int main()
 	bool isNotEqual = (cc != gg);
 	cout << "cc != gg: " << isNotEqual << endl;
 
+
+	// add code below to make sure we unit test the rest of the operators and functions and methods
+	
+    // Test for element-wise division operator
+    Matrix oo = cc;
+    for (int i = 0; i < cc.num_row; ++i) {
+    for (int j = 0; j < cc.num_col; ++j) {
+    oo[i][j] = cc[i][j] / gg[i][j];
+    }
+    }
+    oo.print("cc element-wise div gg");
+	oo.print("cc element-wise div gg");
+
+	// Test for negation operator (already tested as pp = -cc)
+
+	// Test for assignment operator
+	Matrix assignTest;
+	assignTest = cc;
+	assignTest.print("Assignment operator test (assignTest = cc)");
+
+	// Test for scalar addition operator
+	Matrix scalarAdd = cc + 5;
+	scalarAdd.print("cc + 5");
+
+	// Test for scalar subtraction operator
+	Matrix scalarSub = cc - 2;
+	scalarSub.print("cc - 2");
+
+	// Test for scalar multiplication assignment operator
+	Matrix scalarMulAssign = cc;
+	scalarMulAssign *= 3;
+	scalarMulAssign.print("cc *= 3");
+
+	// Test for scalar addition assignment operator
+	Matrix scalarAddAssign = cc;
+	scalarAddAssign += 2;
+	scalarAddAssign.print("cc += 2");
+
+	// Test for scalar subtraction assignment operator
+	Matrix scalarSubAssign = cc;
+	scalarSubAssign -= 1;
+	scalarSubAssign.print("cc -= 1");
+
+	// Test for addition assignment operator
+	Matrix addAssign = cc;
+	addAssign += gg;
+	addAssign.print("cc += gg");
+
+	// Test for subtraction assignment operator
+	Matrix subAssign = cc;
+	subAssign -= gg;
+	subAssign.print("cc -= gg");
+
+	// Test for multiplication assignment operator
+	Matrix mulAssign = cc;
+	mulAssign *= gg;
+	mulAssign.print("cc *= gg");
+
+	// Test for subMatrix
+	Matrix subMat = AA.subMatrix(0, 0);
+	subMat.print("Submatrix of AA (removing row 0, col 0)");
+
+	// Test for buildDiag
+	Matrix diagMat;
+	cc.buildDiag(diagMat);
+	diagMat.print("Diagonal matrix from cc");
+
+	// Test for adjoint
+	Matrix adjMat;
+	AA.adjoint(adjMat);
+	adjMat.print("Adjoint of AA");
+
+	// Test for identity
+	Matrix identityMat(3, 3);
+	identityMat.identity();
+	identityMat.print("Identity matrix 3x3");
+
+	// Test for polar2cartesian and cartesian2polar (example values)
+	Matrix polarMat(1, 3);
+	polarMat.polar2cartesian(5, 0.5, 0.3);
+	Matrix cartMat = polarMat.cartesian2polar();
+	cartMat.print("Cartesian to polar");
+
+	// Test for skew_sym
+	Matrix skewMat = cc.skew_sym();
+	skewMat.print("Skew-symmetric matrix from cc");
+
+	// Test for getIndex
+	int idx = cc.getIndex(2, 0);
+	std::cout << "Index of (2,0) in cc: " << idx << std::endl;
+
+	// Test for getElem and setElem
+	cc.setElem(0, 0, 9.0);
+	double elem = cc.getElem(0, 0);
+	std::cout << "Element at (0,0) in cc after setElem: " << elem << std::endl;
+
+	// Test for mirrorData
+	cc.mirrorData();
+	std::cout << "Data vector after mirrorData: ";
+	for (auto v : cc.data) std::cout << v << " ";
+	std::cout << std::endl;
+
+
+
+
+
+
+
 	std::cin.get();
 }
