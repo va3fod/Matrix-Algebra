@@ -3,6 +3,8 @@ Linear Matrix Algebra
 A simple class to handle the common matrix algebra plus some utility functions.
 The focus is on easy to use.
 
+More apps by Val: [Val apps hub](https://va3fod.github.io/)
+
 int main()
 {
   	// sample use of Matrix class
